@@ -37,6 +37,46 @@ body {
   );
 }
 
+/* Light / cream sections — alternating with vignette-bg */
+.light-bg {
+  background-color: #faf7f2;
+}
+
+.light-bg .sec-label    { color: #2f5039; }
+.light-bg .sec-title    { color: #a59b60; text-shadow: none; }
+.light-bg .sec-sub      { color: #3d4a3a; }
+.light-bg .sec-ornament { color: rgba(47,80,57,0.45); }
+
+/* Event cards on cream */
+.light-bg .ev-card {
+  background: #ffffff;
+  border-color: rgba(47,80,57,0.12);
+  box-shadow: 0 2px 18px rgba(0,0,0,0.07);
+}
+.light-bg .ev-card:hover {
+  border-color: rgba(165,155,96,0.45);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.11);
+}
+.light-bg .ev-card-main { border-color: rgba(165,155,96,0.35); }
+.light-bg .ev-sep       { color: rgba(47,80,57,0.35); }
+
+.light-bg .ev-title      { color: #2f5039; }
+.light-bg .ev-title-main { color: #a59b60; }
+.light-bg .ev-when       { color: #4a6a50; opacity: 1; }
+.light-bg .ev-desc       { color: #3d4a3a; }
+.light-bg .ev-ht         { color: rgba(47,80,57,0.5); }
+.light-bg .ev-map-link   { color: #2f5039; border-color: rgba(47,80,57,0.3); }
+.light-bg .ev-map-link:hover { color: #a59b60; border-color: rgba(165,155,96,0.6); }
+
+/* Closing section on cream */
+.light-bg .closing-heart    { color: #a59b60; text-shadow: none; }
+.light-bg .closing-msg      { color: #3d4a3a; }
+.light-bg .closing-together { color: rgba(47,80,57,0.55); }
+.light-bg .closing-names    { color: #a59b60; text-shadow: none; }
+.light-bg .closing-date     { color: rgba(47,80,57,0.5); }
+.light-bg .closing-hash     { color: rgba(47,80,57,0.45); }
+.light-bg .closing-blessing { color: rgba(47,80,57,0.4); }
+
 /* Centered content wrapper */
 .section-inner {
   max-width: 820px;
