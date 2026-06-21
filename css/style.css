@@ -568,6 +568,43 @@ body {
 }
 
 /* ================================================================
+   MUSIC TOGGLE
+   ================================================================ */
+.music-toggle {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 300;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: rgba(17,32,24,0.88);
+  border: 1px solid rgba(165,155,96,0.45);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.25s ease,
+              border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.music-toggle.visible {
+  opacity: 1; pointer-events: all;
+}
+.music-toggle:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 24px rgba(165,155,96,0.35);
+  transform: scale(1.1);
+}
+.music-toggle.playing #music-icon {
+  display: inline-block;
+  animation: music-pulse 1.8s ease-in-out infinite;
+}
+@keyframes music-pulse {
+  0%,100% { transform: scale(1);    opacity: 1; }
+  50%      { transform: scale(1.18); opacity: 0.8; }
+}
+
+/* ================================================================
    RESPONSIVE
    ================================================================ */
 @media (max-width: 600px) {

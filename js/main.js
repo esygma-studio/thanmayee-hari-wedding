@@ -42,6 +42,7 @@ function openInvite() {
     temple.style.display = 'none';
     glitter.start();
     initPetals();
+    startMusic();
   }, 1200);
 
   NAME_STEPS.forEach(({ id, delay }) => {
@@ -128,6 +129,50 @@ function initScrollReveal() {
   }, { threshold: 0.12 });
 
   document.querySelectorAll('[data-scroll]').forEach(el => observer.observe(el));
+}
+
+/* ================================================================
+   YOUTUBE BACKGROUND MUSIC
+   ================================================================ */
+var ytPlayer = null;
+
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('yt-player', {
+    videoId: '5qsRz1mjI60',
+    playerVars: {
+      autoplay: 0, controls: 0,
+      loop: 1, playlist: '5qsRz1mjI60',
+      modestbranding: 1, rel: 0, fs: 0,
+    },
+    events: {
+      onReady: function(e) { e.target.setVolume(55); }
+    }
+  });
+}
+
+function startMusic() {
+  if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+    ytPlayer.playVideo();
+    const btn = document.getElementById('music-toggle');
+    btn.classList.add('visible', 'playing');
+  } else {
+    setTimeout(startMusic, 600);
+  }
+}
+
+function toggleMusic() {
+  if (!ytPlayer) return;
+  const btn  = document.getElementById('music-toggle');
+  const icon = document.getElementById('music-icon');
+  if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+    ytPlayer.pauseVideo();
+    btn.classList.remove('playing');
+    icon.textContent = '🔇';
+  } else {
+    ytPlayer.playVideo();
+    btn.classList.add('playing');
+    icon.textContent = '🎵';
+  }
 }
 
 /* ================================================================

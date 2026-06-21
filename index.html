@@ -258,7 +258,16 @@
 
   </div><!-- end #site -->
 
+  <!-- Hidden YouTube audio player -->
+  <div id="yt-player" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none;"></div>
+
+  <!-- Floating music toggle -->
+  <button id="music-toggle" class="music-toggle" onclick="toggleMusic()" aria-label="Toggle music">
+    <span id="music-icon">🎵</span>
+  </button>
+
   <script src="js/particles.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
