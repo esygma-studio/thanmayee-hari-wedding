@@ -346,6 +346,18 @@ body {
 }
 [data-scroll].revealed { opacity: 1; transform: translateY(0); }
 
+/* Event cards: more dramatic slide-up on scroll */
+.ev-card[data-scroll] {
+  opacity: 0;
+  transform: translateY(70px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ev-card[data-scroll].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ================================================================
    SCRATCH REVEAL
    ================================================================ */
