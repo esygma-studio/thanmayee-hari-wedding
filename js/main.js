@@ -271,14 +271,6 @@ function _headcountToNumber(text) {
 }
 
 /* ================================================================
-   EMAILJS — send RSVP data to email
-   ================================================================ */
-function initEmailJS() {
-  if (typeof emailjs === 'undefined' || !EMAILJS_PUBLIC_KEY || EMAILJS_PUBLIC_KEY.startsWith('YOUR_')) return;
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-}
-
-/* ================================================================
    RSVP FORM
    ================================================================ */
 function selectToggle(btn) {
@@ -316,9 +308,11 @@ function submitRSVP(e) {
   const attending  = _getMulti('attending');
   const wishes     = document.querySelector('textarea[name="message"]').value.trim();
 
-  /* Send email */
-  if (typeof emailjs !== 'undefined' && !EMAILJS_SERVICE_ID.startsWith('YOUR_')) {
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+  /* Send email via /api/rsvp (Resend — server-side, key stays secret) */
+  fetch('/api/rsvp', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
       guest_name:       name,
       guest_phone:      phone,
       rsvp_status:      rsvp      || 'Not selected',
@@ -328,8 +322,8 @@ function submitRSVP(e) {
       fav_event:        favEvent  || 'Not selected',
       events_attending: attending || 'None selected',
       wishes:           wishes    || '—',
-    }).catch(function(err) { console.warn('EmailJS error:', err); });
-  }
+    }),
+  }).catch(function(err) { console.warn('RSVP email error:', err); });
 
   /* Increment guest counter only for acceptances */
   if (rsvp && rsvp.includes('Accept')) {
@@ -345,4 +339,3 @@ function submitRSVP(e) {
 
 /* Init on load */
 initFirebase();
-initEmailJS();
