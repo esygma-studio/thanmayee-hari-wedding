@@ -65,8 +65,6 @@ body {
 .light-bg .ev-when       { color: #4a6a50; opacity: 1; }
 .light-bg .ev-desc       { color: #3d4a3a; }
 .light-bg .ev-ht         { color: rgba(47,80,57,0.5); }
-.light-bg .ev-map-link   { color: #2f5039; border-color: rgba(47,80,57,0.3); }
-.light-bg .ev-map-link:hover { color: #a59b60; border-color: rgba(165,155,96,0.6); }
 
 /* Closing section on cream */
 .light-bg .closing-heart    { color: #a59b60; text-shadow: none; }
@@ -512,13 +510,39 @@ body {
   letter-spacing: 2px; color: var(--gold-dim); margin-bottom: 0.75rem;
 }
 
-.ev-map-link {
-  font-family: 'Cinzel', serif; font-size: 8px;
-  letter-spacing: 2px; color: var(--gold);
-  text-decoration: none; border-bottom: 1px solid var(--gold-dim);
-  padding-bottom: 2px; transition: color 0.2s ease, border-color 0.2s ease;
+.ev-venue {
+  display: flex; align-items: center; gap: 0.9rem;
+  margin-top: 0.25rem; flex-wrap: wrap;
 }
-.ev-map-link:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+.ev-venue-label {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 2px; color: var(--gold); opacity: 0.75;
+  text-transform: uppercase;
+}
+
+.ev-map-link {
+  font-family: 'Cinzel', serif; font-size: 10px;
+  letter-spacing: 2px; color: var(--text-body);
+  text-decoration: none;
+  border: 1px solid rgba(165,155,96,0.4);
+  padding: 9px 18px; border-radius: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  display: inline-block;
+}
+.ev-map-link:hover {
+  color: var(--gold-bright); border-color: var(--gold-bright);
+  background: rgba(165,155,96,0.08);
+}
+
+.light-bg .ev-map-link {
+  color: #2f5039; border-color: rgba(47,80,57,0.35);
+}
+.light-bg .ev-map-link:hover {
+  color: #a59b60; border-color: rgba(165,155,96,0.6);
+  background: rgba(47,80,57,0.05);
+}
+.light-bg .ev-venue-label { color: #4a6a50; opacity: 1; }
 
 /* ================================================================
    RSVP
