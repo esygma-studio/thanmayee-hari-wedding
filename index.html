@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=11">
+  <link rel="stylesheet" href="css/style.css?v=12">
 </head>
 <body>
 
@@ -245,12 +245,45 @@
           </div>
 
           <div class="rf-group">
-            <label class="rf-label">I'm coming for:</label>
-            <div class="rf-toggle-group rf-multi">
-              <button type="button" class="rf-toggle" data-group="mood" onclick="selectMulti(this)">The Food 🍛</button>
-              <button type="button" class="rf-toggle" data-group="mood" onclick="selectMulti(this)">Dance Floor 💃</button>
-              <button type="button" class="rf-toggle" data-group="mood" onclick="selectMulti(this)">The Love ❤️</button>
-              <button type="button" class="rf-toggle" data-group="mood" onclick="selectMulti(this)">All of It ✨</button>
+            <label class="rf-label">Who are you rooting for?</label>
+            <div class="rf-toggle-group">
+              <button type="button" class="rf-toggle" data-group="rooting" onclick="selectToggle(this)">Team Bride</button>
+              <button type="button" class="rf-toggle" data-group="rooting" onclick="selectToggle(this)">Team Groom</button>
+              <button type="button" class="rf-toggle" data-group="rooting" onclick="selectToggle(this)">Can't Choose</button>
+            </div>
+          </div>
+
+          <div class="rf-group">
+            <label class="rf-label">Are you excited for the wedding?</label>
+            <div class="rf-toggle-group">
+              <button type="button" class="rf-toggle" data-group="excited" onclick="selectToggle(this)">Hell YESSSS 🎉</button>
+              <button type="button" class="rf-toggle" data-group="excited" onclick="selectToggle(this)">Already Dancing 💃</button>
+              <button type="button" class="rf-toggle" data-group="excited" onclick="selectToggle(this)">Waiting for the Food 🍛</button>
+            </div>
+          </div>
+
+          <div class="rf-group">
+            <label class="rf-label">Which event are you most excited for?</label>
+            <div class="rf-toggle-group rf-grid">
+              <button type="button" class="rf-toggle" data-group="fav-event" onclick="selectToggle(this)">Haldi</button>
+              <button type="button" class="rf-toggle" data-group="fav-event" onclick="selectToggle(this)">Mehendi</button>
+              <button type="button" class="rf-toggle" data-group="fav-event" onclick="selectToggle(this)">Sangeet</button>
+              <button type="button" class="rf-toggle" data-group="fav-event" onclick="selectToggle(this)">Pellikuthuru</button>
+              <button type="button" class="rf-toggle" data-group="fav-event" onclick="selectToggle(this)">Pellikoduku</button>
+              <button type="button" class="rf-toggle" data-group="fav-event" onclick="selectToggle(this)">Wedding</button>
+            </div>
+          </div>
+
+          <div class="rf-group">
+            <label class="rf-label">Which events will you be attending?</label>
+            <p class="rf-note" style="margin-bottom:0.75rem;">Select all that apply</p>
+            <div class="rf-toggle-group rf-grid rf-multi">
+              <button type="button" class="rf-toggle" data-group="attending" onclick="selectMulti(this)">Haldi</button>
+              <button type="button" class="rf-toggle" data-group="attending" onclick="selectMulti(this)">Mehendi</button>
+              <button type="button" class="rf-toggle" data-group="attending" onclick="selectMulti(this)">Sangeet</button>
+              <button type="button" class="rf-toggle" data-group="attending" onclick="selectMulti(this)">Pellikuthuru</button>
+              <button type="button" class="rf-toggle" data-group="attending" onclick="selectMulti(this)">Pellikoduku</button>
+              <button type="button" class="rf-toggle" data-group="attending" onclick="selectMulti(this)">Wedding Ceremony</button>
             </div>
           </div>
 

@@ -561,6 +561,12 @@ body {
   display: flex; flex-wrap: wrap; gap: 1rem;
 }
 
+.rf-toggle-group.rf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
 .rf-toggle {
   padding: 16px 28px; min-height: 54px;
   border: 1px solid rgba(165,155,96,0.3);
