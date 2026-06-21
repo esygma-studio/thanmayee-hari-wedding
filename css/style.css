@@ -335,7 +335,7 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 9px;
   letter-spacing: 3px;
-  color: rgba(165,155,96,0.3);
+  color: var(--gold-dim);
   margin-bottom: 3rem;
 }
 
@@ -380,12 +380,12 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 7px;
   letter-spacing: 3px;
-  color: rgba(165,155,96,0.45);
+  color: var(--text-label);
 }
 
 .cd-colon {
   font-size: 2rem;
-  color: rgba(165,155,96,0.3);
+  color: var(--gold-dim);
   margin-top: -1.2rem;
 }
 
@@ -462,7 +462,7 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 8px;
   letter-spacing: 2px;
-  color: rgba(165,155,96,0.45);
+  color: var(--text-body);
   margin-bottom: 0.75rem;
 }
 
@@ -546,10 +546,10 @@ body {
 }
 .ft-star { font-size: 12px; color: var(--gold-dim); }
 
-.ft-hash { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: rgba(165,155,96,0.4); }
+.ft-hash { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: var(--gold-dim); }
 .ft-names { font-family: 'Great Vibes', cursive; font-size: 2.6rem; color: var(--gold); text-shadow: 0 0 16px var(--gold-glow); }
-.ft-date { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: rgba(165,155,96,0.4); }
-.ft-blessing { font-family: 'Cormorant Garamond', serif; font-style: italic; color: rgba(165,155,96,0.28); font-size: 0.85rem; margin-top: 0.5rem; }
+.ft-date { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: var(--gold-dim); }
+.ft-blessing { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--text-body); opacity: 0.55; font-size: 0.85rem; margin-top: 0.5rem; }
 
 /* ================================================================
    RESPONSIVE
