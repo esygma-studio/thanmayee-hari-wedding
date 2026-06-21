@@ -33,12 +33,13 @@ body {
 .s-events,
 .s-rsvp,
 .s-footer {
-  background-color: #3d5f47;
-  background-image: radial-gradient(
+  background: radial-gradient(
     ellipse 65% 80% at 50% 45%,
-    rgba(80, 130, 100, 0.8)  0%,
-    rgba(60,  95,  75, 0.9) 50%,
-    rgba(45,  70,  55, 0.95) 100%
+    #4b7550   0%,
+    #4e714d  30%,
+    #385d42  60%,
+    #2f5039  85%,
+    #0d1e0a 100%
   );
 }
 
