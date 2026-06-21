@@ -146,7 +146,8 @@ function initScrollReveal() {
 /* ================================================================
    YOUTUBE BACKGROUND MUSIC
    ================================================================ */
-var ytPlayer = null;
+var ytPlayer   = null;
+var userPaused = false;
 
 function onYouTubeIframeAPIReady() {
   ytPlayer = new YT.Player('yt-player', {
@@ -158,17 +159,48 @@ function onYouTubeIframeAPIReady() {
     },
     events: {
       onReady: function(e) {
-        /* mute:1 satisfies browser autoplay policy; unMute immediately after */
         e.target.playVideo();
         e.target.unMute();
         e.target.setVolume(55);
         document.getElementById('music-toggle').classList.add('visible', 'playing');
+        _startWatchdog();
+      },
+      onStateChange: function(e) {
+        if (userPaused) return;
+        /* Ended → loop back manually (more reliable than YT loop param) */
+        if (e.data === YT.PlayerState.ENDED) {
+          e.target.seekTo(0);
+          e.target.playVideo();
+        }
+        /* Unexpectedly paused/stalled → restart after short grace period */
+        if (e.data === YT.PlayerState.PAUSED) {
+          setTimeout(function() {
+            if (!userPaused && ytPlayer &&
+                ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+              ytPlayer.playVideo();
+            }
+          }, 800);
+        }
       }
     }
   });
 }
 
-/* Fallback: if browser still blocked audio, unmute on first interaction */
+/* Watchdog: every 3 s, restart if stalled and user hasn't paused */
+function _startWatchdog() {
+  setInterval(function() {
+    if (!ytPlayer || userPaused) return;
+    var s = ytPlayer.getPlayerState();
+    /* -1=unstarted, 0=ended, 2=paused, 5=cued — all mean "not playing" */
+    if (s === -1 || s === 0 || s === 2 || s === 5) {
+      ytPlayer.playVideo();
+      ytPlayer.unMute();
+      ytPlayer.setVolume(55);
+    }
+  }, 3000);
+}
+
+/* Fallback: if browser blocked autoplay, unmute on first interaction */
 function _startOnInteraction() {
   if (ytPlayer) {
     ytPlayer.unMute();
@@ -189,11 +221,15 @@ function toggleMusic() {
   const btn  = document.getElementById('music-toggle');
   const icon = document.getElementById('music-icon');
   if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+    userPaused = true;
     ytPlayer.pauseVideo();
     btn.classList.remove('playing');
     icon.textContent = '🔇';
   } else {
+    userPaused = false;
     ytPlayer.playVideo();
+    ytPlayer.unMute();
+    ytPlayer.setVolume(55);
     btn.classList.add('playing');
     icon.textContent = '🎵';
   }
