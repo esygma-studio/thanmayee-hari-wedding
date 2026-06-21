@@ -347,6 +347,94 @@ body {
 [data-scroll].revealed { opacity: 1; transform: translateY(0); }
 
 /* ================================================================
+   SCRATCH REVEAL
+   ================================================================ */
+.s-scratch .section-inner { padding: 5rem 1.5rem 5.5rem; }
+
+.scratch-instruction {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+  color: var(--text-body); line-height: 1.7;
+  max-width: 480px; margin: 0 auto 2.5rem;
+}
+
+.scratch-container {
+  position: relative;
+  width: min(400px, 92%);
+  height: 210px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: crosshair;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(165,155,96,0.3);
+}
+
+/* Hidden hashtag layer */
+.scratch-reward {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.5rem;
+  background: linear-gradient(135deg, #0d1e10 0%, #1a3820 50%, #0d1e10 100%);
+}
+
+.scratch-hashtag {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.2rem, 9vw, 3.2rem);
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(165,155,96,0.8), 0 0 60px rgba(165,155,96,0.4);
+  opacity: 0.15;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scratch-reward.revealed .scratch-hashtag {
+  opacity: 1;
+  animation: hashtag-pop 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+
+@keyframes hashtag-pop {
+  0%   { transform: scale(0.75); }
+  65%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+.scratch-sub {
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 3px; color: rgba(165,155,96,0.5);
+  opacity: 0; transition: opacity 0.6s ease 0.3s;
+}
+.scratch-reward.revealed .scratch-sub { opacity: 1; }
+
+/* Gold scratch layer (drawn on canvas) */
+.scratch-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  touch-action: none;
+  border-radius: 10px;
+  transition: opacity 0.7s ease;
+}
+
+/* Hint below card */
+.scratch-hint {
+  font-family: 'Cinzel', serif; font-size: 9px;
+  letter-spacing: 4px; color: rgba(165,155,96,0.65);
+  margin-top: 1.4rem;
+  animation: hint-blink 2s ease-in-out infinite;
+}
+
+@keyframes hint-blink {
+  0%,100% { opacity: 0.65; }
+  50%      { opacity: 1; }
+}
+
+.scratch-done {
+  display: none;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.2rem; color: var(--text-body);
+  margin-top: 1.4rem;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* ================================================================
    EVENTS TIMELINE
    ================================================================ */
 .s-events .section-inner { padding: 5rem 1.5rem; }

@@ -129,6 +129,20 @@ function initScrollReveal() {
   }, { threshold: 0.12 });
 
   document.querySelectorAll('[data-scroll]').forEach(el => observer.observe(el));
+
+  /* Init scratch card when it scrolls into view */
+  const scratchSection = document.querySelector('.s-scratch');
+  let scratchInited = false;
+  if (scratchSection) {
+    const scratchObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !scratchInited) {
+        scratchInited = true;
+        initScratch();
+        scratchObs.disconnect();
+      }
+    }, { threshold: 0.2 });
+    scratchObs.observe(scratchSection);
+  }
 }
 
 /* ================================================================
