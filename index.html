@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body>
 
@@ -38,15 +38,14 @@
   </div>
 
   <!-- ============================================================
-       MAIN WEBSITE — single scrollable page
+       MAIN WEBSITE
        ============================================================ -->
   <div id="site">
-
-    <!-- Glitter canvas (fixed, only active during hero animation) -->
     <canvas id="glitter-canvas"></canvas>
 
-    <!-- ── HERO: Names Animation ── -->
+    <!-- ── HERO ── -->
     <section id="hero">
+      <div class="petal-layer" id="petalLayer"></div>
       <img src="images/vishnu.jpg" class="hero-bg-img" alt="">
       <div class="hero-wrap">
         <p class="n-together"  id="n0">TOGETHER WITH THEIR FAMILIES</p>
@@ -61,135 +60,250 @@
         </div>
         <p class="n-hashtag"  id="n6">#Harithanayam</p>
         <p class="n-date"     id="n7">31 · October · 2026</p>
+        <div class="hero-cd"  id="n-cd">
+          <div class="hero-cd-block">
+            <span class="hero-cd-num" id="hcd-days">--</span>
+            <span class="hero-cd-unit">Days</span>
+          </div>
+          <span class="hero-cd-sep">:</span>
+          <div class="hero-cd-block">
+            <span class="hero-cd-num" id="hcd-hours">--</span>
+            <span class="hero-cd-unit">Hours</span>
+          </div>
+          <span class="hero-cd-sep">:</span>
+          <div class="hero-cd-block">
+            <span class="hero-cd-num" id="hcd-mins">--</span>
+            <span class="hero-cd-unit">Mins</span>
+          </div>
+          <span class="hero-cd-sep">:</span>
+          <div class="hero-cd-block">
+            <span class="hero-cd-num" id="hcd-secs">--</span>
+            <span class="hero-cd-unit">Secs</span>
+          </div>
+        </div>
         <div class="n-scroll-cue" id="n8">
-          <p>SCROLL TO EXPLORE</p>
+          <p>SCROLL</p>
           <span class="n-arrow">↓</span>
         </div>
       </div>
     </section>
 
-    <!-- ── COUNTDOWN ── -->
-    <section class="s-countdown">
-      <p class="sec-label">COUNTING DOWN TO</p>
-      <h2 class="sec-title">The Big Day</h2>
-      <p class="sec-hash">#Harithanayam</p>
-      <div class="cd-wrap">
-        <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-unit">Days</span></div>
-        <span class="cd-colon">:</span>
-        <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-unit">Hours</span></div>
-        <span class="cd-colon">:</span>
-        <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-unit">Minutes</span></div>
-        <span class="cd-colon">:</span>
-        <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-unit">Seconds</span></div>
+    <!-- ── PARENTS ── -->
+    <section class="s-parents vignette-bg">
+      <div class="section-inner">
+        <p class="sec-label">WITH THE BLESSINGS OF</p>
+        <h2 class="sec-title">Our Beloved Parents</h2>
+        <div class="sec-ornament">✧</div>
+        <div class="parents-grid">
+          <div class="parents-col" data-scroll>
+            <p class="parents-side-label">Groom's Family</p>
+            <p class="parents-name">Sri [Father's Name]</p>
+            <p class="parents-amp">&amp;</p>
+            <p class="parents-name">Smt [Mother's Name]</p>
+          </div>
+          <div class="parents-divider">
+            <span class="parents-div-line"></span>
+            <span class="parents-div-star">✦</span>
+            <span class="parents-div-line"></span>
+          </div>
+          <div class="parents-col" data-scroll>
+            <p class="parents-side-label">Bride's Family</p>
+            <p class="parents-name">Sri [Father's Name]</p>
+            <p class="parents-amp">&amp;</p>
+            <p class="parents-name">Smt [Mother's Name]</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ── EVENTS ── -->
-    <section class="s-events">
-      <p class="sec-label">JOIN US FOR</p>
-      <h2 class="sec-title">The Celebrations</h2>
-      <p class="sec-hash">#Harithanayam</p>
+    <!-- ── VENUE ── -->
+    <section class="s-venue vignette-bg">
+      <div class="section-inner">
+        <p class="sec-label">FIND US AT</p>
+        <h2 class="sec-title">Our Wedding Venue</h2>
+        <div class="sec-ornament">✧</div>
+        <p class="venue-intro">We are thrilled to invite you to celebrate our special day at the beautiful</p>
+        <p class="venue-name" data-scroll>[Venue Name]</p>
+        <p class="venue-location">[City, State]</p>
+        <a class="venue-map-btn" href="https://maps.google.com" target="_blank" rel="noopener">
+          📍 Navigate to Venue
+        </a>
+      </div>
+    </section>
 
-      <div class="ev-grid">
+    <!-- ── EVENTS TIMELINE ── -->
+    <section class="s-events vignette-bg">
+      <div class="section-inner">
+        <p class="sec-label">JOIN US FOR</p>
+        <h2 class="sec-title">The Celebrations</h2>
+        <p class="sec-sub">A celebration of sacred tradition and joyful union, crafted with love for you to share in our joy.</p>
+        <div class="sec-ornament">✧</div>
 
-        <div class="ev-card">
-          <div class="ev-media">
-            <span class="ev-icon">🌿</span>
-            <span class="ev-ph-lbl">Mehendi · Photo / Video</span>
+        <div class="ev-timeline">
+
+          <div class="ev-card" data-scroll>
+            <div class="ev-media">
+              <span class="ev-icon">🌿</span>
+              <span class="ev-ph-lbl">Photo / Video</span>
+            </div>
+            <div class="ev-info">
+              <h3 class="ev-title">Mehendi</h3>
+              <p class="ev-when">Wednesday, 28 October · Evening</p>
+              <p class="ev-desc">Begin the celebrations with the art of mehndi — intricate patterns adorning hands with love and blessings.</p>
+              <a class="ev-map-link" href="https://maps.google.com" target="_blank" rel="noopener">📍 See on Maps</a>
+            </div>
           </div>
-          <div class="ev-info">
-            <h3 class="ev-title">Mehendi</h3>
-            <p class="ev-when">Wednesday, 28 October · Evening</p>
-            <p class="ev-desc">Begin the celebrations with the art of mehndi — intricate patterns adorning hands with love and blessings.</p>
-            <button class="ev-venue-btn">📍 Venue Details</button>
+          <div class="ev-sep">✧</div>
+
+          <div class="ev-card" data-scroll>
+            <div class="ev-media">
+              <span class="ev-icon">🌻</span>
+              <span class="ev-ph-lbl">Photo / Video</span>
+            </div>
+            <div class="ev-info">
+              <h3 class="ev-title">Haldi</h3>
+              <p class="ev-when">Thursday, 29 October · Morning</p>
+              <p class="ev-desc">A turmeric blessing ceremony bringing radiance, purity, and divine grace to the bride and groom.</p>
+              <a class="ev-map-link" href="https://maps.google.com" target="_blank" rel="noopener">📍 See on Maps</a>
+            </div>
           </div>
+          <div class="ev-sep">✧</div>
+
+          <div class="ev-card" data-scroll>
+            <div class="ev-media">
+              <span class="ev-icon">🎶</span>
+              <span class="ev-ph-lbl">Photo / Video</span>
+            </div>
+            <div class="ev-info">
+              <h3 class="ev-title">Sangeet</h3>
+              <p class="ev-when">Thursday, 29 October · Evening</p>
+              <p class="ev-desc">An evening of music, dance, and laughter as both families unite in joyful celebration.</p>
+              <a class="ev-map-link" href="https://maps.google.com" target="_blank" rel="noopener">📍 See on Maps</a>
+            </div>
+          </div>
+          <div class="ev-sep">✧</div>
+
+          <div class="ev-card" data-scroll>
+            <div class="ev-media">
+              <span class="ev-icon">👰</span>
+              <span class="ev-ph-lbl">Photo / Video</span>
+            </div>
+            <div class="ev-info">
+              <h3 class="ev-title">Pellikuthuru</h3>
+              <p class="ev-when">Friday, 30 October · Morning</p>
+              <p class="ev-desc">The bride's sacred pre-wedding ceremony — blessings as she steps into her beautiful new chapter.</p>
+              <a class="ev-map-link" href="https://maps.google.com" target="_blank" rel="noopener">📍 See on Maps</a>
+            </div>
+          </div>
+          <div class="ev-sep">✧</div>
+
+          <div class="ev-card" data-scroll>
+            <div class="ev-media">
+              <span class="ev-icon">🤵</span>
+              <span class="ev-ph-lbl">Photo / Video</span>
+            </div>
+            <div class="ev-info">
+              <h3 class="ev-title">Pellikoduku</h3>
+              <p class="ev-when">Friday, 30 October · Morning</p>
+              <p class="ev-desc">The groom's sacred pre-wedding ceremony — blessings as he prepares to receive his beloved.</p>
+              <a class="ev-map-link" href="https://maps.google.com" target="_blank" rel="noopener">📍 See on Maps</a>
+            </div>
+          </div>
+          <div class="ev-sep">✧</div>
+
+          <div class="ev-card ev-card-main" data-scroll>
+            <div class="ev-media">
+              <span class="ev-icon">💍</span>
+              <span class="ev-ph-lbl">Photo / Video</span>
+            </div>
+            <div class="ev-info">
+              <h3 class="ev-title ev-title-main">Muhurtham</h3>
+              <p class="ev-when">Saturday, 31 October · 11:54 AM</p>
+              <p class="ev-desc">The auspicious moment — two souls, two families, one eternal bond. Witness the sacred union of Thanmayee &amp; Hari.</p>
+              <p class="ev-ht">#Harithanayam</p>
+              <a class="ev-map-link" href="https://maps.google.com" target="_blank" rel="noopener">📍 See on Maps</a>
+            </div>
+          </div>
+
         </div>
-
-        <div class="ev-card">
-          <div class="ev-media">
-            <span class="ev-icon">🌻</span>
-            <span class="ev-ph-lbl">Haldi · Photo / Video</span>
-          </div>
-          <div class="ev-info">
-            <h3 class="ev-title">Haldi</h3>
-            <p class="ev-when">Thursday, 29 October · Morning</p>
-            <p class="ev-desc">A turmeric blessing ceremony bringing radiance, purity, and divine grace to the bride and groom.</p>
-            <button class="ev-venue-btn">📍 Venue Details</button>
-          </div>
-        </div>
-
-        <div class="ev-card">
-          <div class="ev-media">
-            <span class="ev-icon">🎶</span>
-            <span class="ev-ph-lbl">Sangeet · Photo / Video</span>
-          </div>
-          <div class="ev-info">
-            <h3 class="ev-title">Sangeet</h3>
-            <p class="ev-when">Thursday, 29 October · Evening</p>
-            <p class="ev-desc">An evening of music, dance, and laughter as both families unite in joyful celebration.</p>
-            <button class="ev-venue-btn">📍 Venue Details</button>
-          </div>
-        </div>
-
-        <div class="ev-card">
-          <div class="ev-media">
-            <span class="ev-icon">👰</span>
-            <span class="ev-ph-lbl">Pellikuthuru · Photo / Video</span>
-          </div>
-          <div class="ev-info">
-            <h3 class="ev-title">Pellikuthuru</h3>
-            <p class="ev-when">Friday, 30 October · Morning</p>
-            <p class="ev-desc">The bride's sacred pre-wedding ceremony — blessings as she steps into her beautiful new chapter.</p>
-            <button class="ev-venue-btn">📍 Venue Details</button>
-          </div>
-        </div>
-
-        <div class="ev-card">
-          <div class="ev-media">
-            <span class="ev-icon">🤵</span>
-            <span class="ev-ph-lbl">Pellikoduku · Photo / Video</span>
-          </div>
-          <div class="ev-info">
-            <h3 class="ev-title">Pellikoduku</h3>
-            <p class="ev-when">Friday, 30 October · Morning</p>
-            <p class="ev-desc">The groom's sacred pre-wedding ceremony — blessings as he prepares to receive his beloved.</p>
-            <button class="ev-venue-btn">📍 Venue Details</button>
-          </div>
-        </div>
-
-        <div class="ev-card ev-card-main">
-          <div class="ev-media ev-media-main">
-            <span class="ev-icon ev-icon-main">💍</span>
-            <span class="ev-ph-lbl">Muhurtham · Photo / Video</span>
-          </div>
-          <div class="ev-info">
-            <h3 class="ev-title ev-title-main">Muhurtham</h3>
-            <p class="ev-when">Saturday, 31 October · 11:54 AM</p>
-            <p class="ev-desc">The auspicious moment — two souls, two families, one eternal bond. Witness the sacred union of Thanmayee &amp; Hari.</p>
-            <p class="ev-ht">#Harithanayam</p>
-            <button class="ev-venue-btn">📍 Venue Details</button>
-          </div>
-        </div>
-
       </div>
     </section>
 
     <!-- ── RSVP ── -->
-    <section class="s-rsvp">
-      <p class="sec-label">WE'D LOVE TO HAVE YOU</p>
-      <h2 class="sec-title">RSVP</h2>
-      <p class="sec-hash">#Harithanayam</p>
-      <p class="rsvp-note">RSVP details will be shared soon.<br>We can't wait to celebrate with you!</p>
+    <section class="s-rsvp vignette-bg">
+      <div class="section-inner">
+        <p class="sec-label">JOIN THE FUN</p>
+        <h2 class="sec-title">Celebrate With Us</h2>
+        <p class="sec-sub">A few fun questions before the big day!</p>
+        <div class="sec-ornament">✧</div>
+
+        <form class="rsvp-form" id="rsvpForm" onsubmit="submitRSVP(event)">
+
+          <div class="rf-group">
+            <label class="rf-label">Guest Details</label>
+            <input class="rf-input" type="text" name="name" placeholder="Your Name" required>
+            <input class="rf-input" type="tel" name="phone" placeholder="Phone Number">
+          </div>
+
+          <div class="rf-group">
+            <label class="rf-label">Will you be joining us?</label>
+            <div class="rf-toggle-group">
+              <button type="button" class="rf-toggle" data-group="rsvp" onclick="selectToggle(this)">Joyfully Accept</button>
+              <button type="button" class="rf-toggle" data-group="rsvp" onclick="selectToggle(this)">Regrettably Decline</button>
+            </div>
+          </div>
+
+          <div class="rf-group">
+            <label class="rf-label">Who will get emotional first?</label>
+            <div class="rf-toggle-group">
+              <button type="button" class="rf-toggle" data-group="guess" onclick="selectToggle(this)">T &nbsp;Thanmayee</button>
+              <button type="button" class="rf-toggle" data-group="guess" onclick="selectToggle(this)">H &nbsp;Hari</button>
+              <button type="button" class="rf-toggle" data-group="guess" onclick="selectToggle(this)">B &nbsp;Both</button>
+            </div>
+            <p class="rf-note">Reveal after the wedding 😉</p>
+          </div>
+
+          <div class="rf-group">
+            <label class="rf-label">I'm coming for:</label>
+            <div class="rf-toggle-group rf-multi">
+              <button type="button" class="rf-toggle" data-group="mood" onclick="selectMulti(this)">The Food 🍛</button>
+              <button type="button" class="rf-toggle" data-group="mood" onclick="selectMulti(this)">Dance Floor 💃</button>
+              <button type="button" class="rf-toggle" data-group="mood" onclick="selectMulti(this)">The Love ❤️</button>
+              <button type="button" class="rf-toggle" data-group="mood" onclick="selectMulti(this)">All of It ✨</button>
+            </div>
+          </div>
+
+          <div class="rf-group">
+            <label class="rf-label">Share a wish or memory.</label>
+            <textarea class="rf-textarea" name="message" placeholder="Write your wishes here..."></textarea>
+            <p class="rf-note">🔥 This becomes a digital memory book.</p>
+          </div>
+
+          <button type="submit" class="rf-submit">Send Love ❤️</button>
+        </form>
+
+        <div class="rsvp-thanks" id="rsvpThanks">
+          <div class="rsvp-thanks-icon">💛</div>
+          <h3 class="rsvp-thanks-title">Thank You!</h3>
+          <p class="rsvp-thanks-msg">Your love has been received. We can't wait to celebrate with you!</p>
+        </div>
+      </div>
     </section>
 
-    <!-- ── FOOTER ── -->
-    <footer class="s-footer">
-      <div class="ft-divider"><span></span><span class="ft-star">✦</span><span></span></div>
-      <p class="ft-hash">#Harithanayam</p>
-      <p class="ft-names">Thanmayee &amp; Hari</p>
-      <p class="ft-date">31 · October · 2026</p>
-      <p class="ft-blessing">Srirasthu! Shubhamasthu!! Avighnamasthu!!!</p>
-    </footer>
+    <!-- ── CLOSING ── -->
+    <section class="s-closing vignette-bg">
+      <div class="section-inner">
+        <div class="closing-heart">♥</div>
+        <h2 class="sec-title">With Love &amp; Blessings</h2>
+        <p class="closing-msg">We can't wait to share the beginning of our forever with you.<br>Your presence and blessings mean the world to us.</p>
+        <div class="sec-ornament">✧</div>
+        <p class="closing-together">Together with our families</p>
+        <p class="closing-names">Thanmayee &amp; Hari</p>
+        <p class="closing-date">31 · October · 2026</p>
+        <p class="closing-hash">#Harithanayam</p>
+        <p class="closing-blessing">Srirasthu! Shubhamasthu!! Avighnamasthu!!!</p>
+      </div>
+    </section>
 
   </div><!-- end #site -->
 
