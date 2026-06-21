@@ -463,19 +463,15 @@ body {
 
 .ev-media {
   width: 100%;
-  height: 400px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0ede6;
   border-bottom: 1px solid rgba(165,155,96,0.15);
 }
 
 .ev-img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
+  max-height: 85vh;
+  object-fit: cover;
   object-position: center;
   display: block;
 }
@@ -702,14 +698,10 @@ body {
    ================================================================ */
 @media (max-width: 600px) {
   .ev-card { max-width: 100%; }
-  .ev-media { height: 280px; }
+  .ev-img { max-height: 70vh; }
   .hero-cd { gap: 0.4rem; }
   .hero-cd-block { min-width: 52px; }
   .rf-toggle-group { flex-direction: column; gap: 0.75rem; }
   .rf-toggle { width: 100%; }
   .rf-submit { width: 100%; padding: 20px; }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
-  .ev-media { height: 360px; }
 }
