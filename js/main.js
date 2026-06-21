@@ -5,7 +5,6 @@ const glitter = new GlitterCanvas('glitter-canvas');
 
 const NAME_STEPS = [
   { id: 'n0',   delay: 500  },
-  { id: 'n1',   delay: 900  },
   { id: 'n2',   delay: 1300 },
   { id: 'n3',   delay: 2000 },
   { id: 'n4',   delay: 2350 },
@@ -162,7 +161,6 @@ function onYouTubeIframeAPIReady() {
         e.target.playVideo();
         e.target.unMute();
         e.target.setVolume(55);
-        document.getElementById('music-toggle').classList.add('visible', 'playing');
         _startWatchdog();
       },
       onStateChange: function(e) {
@@ -208,7 +206,6 @@ function _startOnInteraction() {
     if (ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
       ytPlayer.playVideo();
     }
-    document.getElementById('music-toggle').classList.add('visible', 'playing');
   }
   document.removeEventListener('click',      _startOnInteraction);
   document.removeEventListener('touchstart', _startOnInteraction);
