@@ -11,30 +11,30 @@
   --gold-glow:   rgba(165,155,96,0.45);
   --text-body:   #f0ebe0;
   --text-label:  #a59b60;
-  --bg:          #112018;
-  --bg-mid:      #112018;
-  --bg-card:     #112018;
+  --bg:          #3d5f47;
+  --bg-mid:      #3d5f47;
+  --bg-card:     #3d5f47;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #112018 !important;
+  background-color: #3d5f47 !important;
 }
 
 body {
-  background-color: #112018 !important;
+  background-color: #3d5f47 !important;
 }
 
 #site {
-  background-color: #112018 !important;
+  background-color: #3d5f47 !important;
 }
 
-.s-countdown  { background-color: #112018 !important; }
-.s-events     { background-color: #112018 !important; }
-.s-rsvp       { background-color: #112018 !important; }
-.s-footer     { background-color: #112018 !important; }
-.ev-card      { background-color: #112018 !important; }
-.ev-card-main { background-color: #112018 !important; }
+.s-countdown  { background-color: #3d5f47 !important; }
+.s-events     { background-color: #3d5f47 !important; }
+.s-rsvp       { background-color: #3d5f47 !important; }
+.s-footer     { background-color: #3d5f47 !important; }
+.ev-card      { background-color: #3d5f47 !important; }
+.ev-card-main { background-color: #3d5f47 !important; }
 
 body {
   font-family: 'Cormorant Garamond', Georgia, serif;
@@ -411,7 +411,7 @@ body {
 
 .ev-card {
   border: 1px solid rgba(165,155,96,0.2);
-  background: #112018;
+  background: #3d5f47;
   overflow: hidden;
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
@@ -431,7 +431,7 @@ body {
 .ev-media {
   width: 100%;
   aspect-ratio: 4 / 3;
-  background: rgba(17,40,28,0.6);
+  background: rgba(40,70,50,0.7);
   border-bottom: 1px solid rgba(165,155,96,0.15);
   display: flex;
   flex-direction: column;
