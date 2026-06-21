@@ -18,20 +18,23 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #112018;
+  background-color: #112018 !important;
 }
 
-body, #site {
-  background-color: #112018;
+body {
+  background-color: #112018 !important;
 }
 
-.s-countdown, .s-events, .s-rsvp, .s-footer {
-  background-color: #112018;
+#site {
+  background-color: #112018 !important;
 }
 
-.ev-card, .ev-card-main {
-  background-color: #112018;
-}
+.s-countdown  { background-color: #112018 !important; }
+.s-events     { background-color: #112018 !important; }
+.s-rsvp       { background-color: #112018 !important; }
+.s-footer     { background-color: #112018 !important; }
+.ev-card      { background-color: #112018 !important; }
+.ev-card-main { background-color: #112018 !important; }
 
 body {
   font-family: 'Cormorant Garamond', Georgia, serif;
