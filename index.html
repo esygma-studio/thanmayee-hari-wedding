@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanmayee & Hari | #Harithanayam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       TEMPLE OVERLAY — sits on top, fades away on click
+       ============================================================ -->
+  <div id="screen-temple">
+    <div class="temple-bg-wrap">
+      <img src="images/Temple.jpg" alt="" class="temple-bg-img" id="templeImg">
+      <div class="temple-bg-overlay"></div>
+    </div>
+    <div class="temple-center">
+      <p class="temple-tagline">TOGETHER WITH FAMILIES</p>
+      <button class="monogram-btn" onclick="openInvite()">
+        <div class="monogram-ring mono-ring-outer"></div>
+        <div class="monogram-ring mono-ring-inner"></div>
+        <div class="monogram-face">
+          <div class="monogram-letters">
+            <span class="ml-initial">T</span>
+            <span class="ml-sep">✦</span>
+            <span class="ml-initial">H</span>
+          </div>
+          <span class="monogram-cta">TAP TO OPEN</span>
+        </div>
+      </button>
+      <p class="temple-hash">#Harithanayam</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN WEBSITE — single scrollable page
+       ============================================================ -->
+  <div id="site">
+
+    <!-- Glitter canvas (fixed, only active during hero animation) -->
+    <canvas id="glitter-canvas"></canvas>
+
+    <!-- ── HERO: Names Animation ── -->
+    <section id="hero">
+      <img src="images/vishnu.jpg" class="hero-bg-img" alt="">
+      <div class="hero-wrap">
+        <p class="n-together"  id="n0">TOGETHER WITH THEIR FAMILIES</p>
+        <div class="n-diya"    id="n1">🪔</div>
+        <h1 class="n-bride"   id="n2">Thanmayee</h1>
+        <p class="n-amp"      id="n3">&amp;</p>
+        <h1 class="n-groom"   id="n4">Hari</h1>
+        <div class="n-divider" id="n5">
+          <span class="ndiv-line"></span>
+          <span class="ndiv-star">✦</span>
+          <span class="ndiv-line"></span>
+        </div>
+        <p class="n-hashtag"  id="n6">#Harithanayam</p>
+        <p class="n-date"     id="n7">31 · October · 2026</p>
+        <div class="n-scroll-cue" id="n8">
+          <p>SCROLL TO EXPLORE</p>
+          <span class="n-arrow">↓</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COUNTDOWN ── -->
+    <section class="s-countdown">
+      <p class="sec-label">COUNTING DOWN TO</p>
+      <h2 class="sec-title">The Big Day</h2>
+      <p class="sec-hash">#Harithanayam</p>
+      <div class="cd-wrap">
+        <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-unit">Days</span></div>
+        <span class="cd-colon">:</span>
+        <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-unit">Hours</span></div>
+        <span class="cd-colon">:</span>
+        <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-unit">Minutes</span></div>
+        <span class="cd-colon">:</span>
+        <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-unit">Seconds</span></div>
+      </div>
+    </section>
+
+    <!-- ── EVENTS ── -->
+    <section class="s-events">
+      <p class="sec-label">JOIN US FOR</p>
+      <h2 class="sec-title">The Celebrations</h2>
+      <p class="sec-hash">#Harithanayam</p>
+
+      <div class="ev-grid">
+
+        <div class="ev-card">
+          <div class="ev-media">
+            <span class="ev-icon">🌿</span>
+            <span class="ev-ph-lbl">Mehendi · Photo / Video</span>
+          </div>
+          <div class="ev-info">
+            <h3 class="ev-title">Mehendi</h3>
+            <p class="ev-when">Wednesday, 28 October · Evening</p>
+            <p class="ev-desc">Begin the celebrations with the art of mehndi — intricate patterns adorning hands with love and blessings.</p>
+            <button class="ev-venue-btn">📍 Venue Details</button>
+          </div>
+        </div>
+
+        <div class="ev-card">
+          <div class="ev-media">
+            <span class="ev-icon">🌻</span>
+            <span class="ev-ph-lbl">Haldi · Photo / Video</span>
+          </div>
+          <div class="ev-info">
+            <h3 class="ev-title">Haldi</h3>
+            <p class="ev-when">Thursday, 29 October · Morning</p>
+            <p class="ev-desc">A turmeric blessing ceremony bringing radiance, purity, and divine grace to the bride and groom.</p>
+            <button class="ev-venue-btn">📍 Venue Details</button>
+          </div>
+        </div>
+
+        <div class="ev-card">
+          <div class="ev-media">
+            <span class="ev-icon">🎶</span>
+            <span class="ev-ph-lbl">Sangeet · Photo / Video</span>
+          </div>
+          <div class="ev-info">
+            <h3 class="ev-title">Sangeet</h3>
+            <p class="ev-when">Thursday, 29 October · Evening</p>
+            <p class="ev-desc">An evening of music, dance, and laughter as both families unite in joyful celebration.</p>
+            <button class="ev-venue-btn">📍 Venue Details</button>
+          </div>
+        </div>
+
+        <div class="ev-card">
+          <div class="ev-media">
+            <span class="ev-icon">👰</span>
+            <span class="ev-ph-lbl">Pellikuthuru · Photo / Video</span>
+          </div>
+          <div class="ev-info">
+            <h3 class="ev-title">Pellikuthuru</h3>
+            <p class="ev-when">Friday, 30 October · Morning</p>
+            <p class="ev-desc">The bride's sacred pre-wedding ceremony — blessings as she steps into her beautiful new chapter.</p>
+            <button class="ev-venue-btn">📍 Venue Details</button>
+          </div>
+        </div>
+
+        <div class="ev-card">
+          <div class="ev-media">
+            <span class="ev-icon">🤵</span>
+            <span class="ev-ph-lbl">Pellikoduku · Photo / Video</span>
+          </div>
+          <div class="ev-info">
+            <h3 class="ev-title">Pellikoduku</h3>
+            <p class="ev-when">Friday, 30 October · Morning</p>
+            <p class="ev-desc">The groom's sacred pre-wedding ceremony — blessings as he prepares to receive his beloved.</p>
+            <button class="ev-venue-btn">📍 Venue Details</button>
+          </div>
+        </div>
+
+        <div class="ev-card ev-card-main">
+          <div class="ev-media ev-media-main">
+            <span class="ev-icon ev-icon-main">💍</span>
+            <span class="ev-ph-lbl">Muhurtham · Photo / Video</span>
+          </div>
+          <div class="ev-info">
+            <h3 class="ev-title ev-title-main">Muhurtham</h3>
+            <p class="ev-when">Saturday, 31 October · 11:54 AM</p>
+            <p class="ev-desc">The auspicious moment — two souls, two families, one eternal bond. Witness the sacred union of Thanmayee &amp; Hari.</p>
+            <p class="ev-ht">#Harithanayam</p>
+            <button class="ev-venue-btn">📍 Venue Details</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── RSVP ── -->
+    <section class="s-rsvp">
+      <p class="sec-label">WE'D LOVE TO HAVE YOU</p>
+      <h2 class="sec-title">RSVP</h2>
+      <p class="sec-hash">#Harithanayam</p>
+      <p class="rsvp-note">RSVP details will be shared soon.<br>We can't wait to celebrate with you!</p>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="s-footer">
+      <div class="ft-divider"><span></span><span class="ft-star">✦</span><span></span></div>
+      <p class="ft-hash">#Harithanayam</p>
+      <p class="ft-names">Thanmayee &amp; Hari</p>
+      <p class="ft-date">31 · October · 2026</p>
+      <p class="ft-blessing">Srirasthu! Shubhamasthu!! Avighnamasthu!!!</p>
+    </footer>
+
+  </div><!-- end #site -->
+
+  <script src="js/particles.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
