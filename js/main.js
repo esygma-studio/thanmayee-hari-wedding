@@ -10,8 +10,7 @@ const NAME_STEPS = [
   { id: 'n3',   delay: 2000 },
   { id: 'n4',   delay: 2350 },
   { id: 'n5',   delay: 3100 },
-  { id: 'n6',   delay: 3500 },
-  { id: 'n7',   delay: 3900 },
+  { id: 'n7',   delay: 3500 },
   { id: 'n-cd', delay: 4300 },
   { id: 'n8',   delay: 4800 },
 ];
@@ -42,7 +41,6 @@ function openInvite() {
     temple.style.display = 'none';
     glitter.start();
     initPetals();
-    startMusic();
   }, 1200);
 
   NAME_STEPS.forEach(({ id, delay }) => {
@@ -154,25 +152,33 @@ function onYouTubeIframeAPIReady() {
   ytPlayer = new YT.Player('yt-player', {
     videoId: '5qsRz1mjI60',
     playerVars: {
-      autoplay: 0, controls: 0,
+      autoplay: 1, controls: 0,
       loop: 1, playlist: '5qsRz1mjI60',
       modestbranding: 1, rel: 0, fs: 0,
     },
     events: {
-      onReady: function(e) { e.target.setVolume(55); }
+      onReady: function(e) {
+        e.target.setVolume(55);
+        e.target.playVideo();
+        document.getElementById('music-toggle').classList.add('visible', 'playing');
+      }
     }
   });
 }
 
-function startMusic() {
-  if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+/* Fallback: start music on first user interaction if autoplay was blocked */
+function _startOnInteraction() {
+  if (!ytPlayer) return;
+  const state = ytPlayer.getPlayerState();
+  if (state !== YT.PlayerState.PLAYING) {
     ytPlayer.playVideo();
-    const btn = document.getElementById('music-toggle');
-    btn.classList.add('visible', 'playing');
-  } else {
-    setTimeout(startMusic, 600);
+    document.getElementById('music-toggle').classList.add('visible', 'playing');
   }
+  document.removeEventListener('click',      _startOnInteraction);
+  document.removeEventListener('touchstart', _startOnInteraction);
 }
+document.addEventListener('click',      _startOnInteraction);
+document.addEventListener('touchstart', _startOnInteraction);
 
 function toggleMusic() {
   if (!ytPlayer) return;
