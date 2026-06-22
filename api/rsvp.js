@@ -1,4 +1,6 @@
-export default async function handler(req, res) {
+const nodemailer = require('nodemailer');
+
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -7,6 +9,14 @@ export default async function handler(req, res) {
     guest_name, guest_phone, rsvp_status, headcount,
     rooting_for, excited_level, fav_event, events_attending, wishes
   } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
 
   const html = `
 <!DOCTYPE html>
@@ -87,29 +97,16 @@ export default async function handler(req, res) {
 </html>`;
 
   try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: 'Harithanayam RSVP <onboarding@resend.dev>',
-        to:   ['hari.bollineni1999@gmail.com'],
-        subject: `💌 RSVP from ${guest_name || 'a guest'} — #Harithanayam`,
-        html,
-      }),
+    await transporter.sendMail({
+      from:    `"Harithanayam RSVP" <${process.env.GMAIL_USER}>`,
+      to:      'hari.bollineni1999@gmail.com',
+      subject: `💌 RSVP from ${guest_name || 'a guest'} — #Harithanayam`,
+      html,
     });
-
-    if (!response.ok) {
-      const err = await response.text();
-      console.error('Resend error:', err);
-      return res.status(500).json({ error: 'Email failed' });
-    }
 
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error('Handler error:', err);
-    return res.status(500).json({ error: 'Server error' });
+    console.error('Gmail SMTP error:', err.message);
+    return res.status(500).json({ error: 'Failed to send email' });
   }
-}
+};
