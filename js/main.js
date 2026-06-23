@@ -28,16 +28,16 @@ function openInvite() {
   const img    = document.getElementById('templeImg');
 
   /*
-   * Unlock ALL event videos immediately while we are still inside the
-   * tap/click event handler — the only guaranteed user-gesture context
-   * on iOS Safari.  Setting .muted and .playsinline as JS properties
-   * (not just HTML attributes) is required for iOS to honour them.
+   * Inside the tap/click handler (user-gesture context) set the required
+   * iOS properties on every video element to unlock them.
+   * We do NOT call play() here on all videos — large files (6–20 MB)
+   * won't have buffered enough data yet, and iOS leaves them frozen on
+   * the first frame. The IntersectionObserver below calls play() on each
+   * video individually once it's in the viewport AND has data ready.
    */
   document.querySelectorAll('video.ev-img').forEach(function(v) {
-    v.muted     = true;
+    v.muted      = true;
     v.playsInline = true;
-    var p = v.play();
-    if (p !== undefined) p.catch(function() {});
   });
 
   img.style.transition = 'transform 1.4s ease, opacity 1.4s ease';
@@ -154,22 +154,34 @@ function initScrollReveal() {
     scratchObs.observe(scratchSection);
   }
 
-  /* Force-play event videos as they scroll into view.
-     iOS ignores the autoplay attribute for off-screen elements;
-     an explicit .play() call triggered by IntersectionObserver is required. */
-  const videoObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const v = entry.target;
-        v.muted      = true;
-        v.playsInline = true;
-        const p = v.play();
-        if (p !== undefined) p.catch(() => {});
-      }
-    });
-  }, { threshold: 0 });
+  /* Play each video when it enters the viewport and has buffered enough data. */
+  function _playWhenReady(v) {
+    v.muted      = true;
+    v.playsInline = true;
+    function doPlay() {
+      var p = v.play();
+      if (p !== undefined) p.catch(function() {});
+    }
+    /* readyState >= 3 means the browser has enough data to start playing */
+    if (v.readyState >= 3) {
+      doPlay();
+    } else {
+      /* Wait for enough data, then play */
+      v.addEventListener('canplay', doPlay, { once: true });
+      /* Kick off loading if the browser hasn't started yet */
+      if (v.readyState === 0) v.load();
+    }
+  }
 
-  document.querySelectorAll('video.ev-img').forEach(v => videoObs.observe(v));
+  const videoObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) _playWhenReady(entry.target);
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('video.ev-img').forEach(function(v) {
+    videoObs.observe(v);
+  });
 }
 
 /* ================================================================
