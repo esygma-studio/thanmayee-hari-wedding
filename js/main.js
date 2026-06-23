@@ -145,61 +145,99 @@ function initScrollReveal() {
 /* ================================================================
    YOUTUBE BACKGROUND MUSIC
    ================================================================ */
-var ytPlayer   = null;
-var userPaused = false;
+var ytPlayer      = null;
+var userPaused    = false;
+var userInteracted = false; /* tracks whether a real gesture has occurred */
 
 function onYouTubeIframeAPIReady() {
   ytPlayer = new YT.Player('yt-player', {
     videoId: '5qsRz1mjI60',
     playerVars: {
-      autoplay: 1, controls: 0, mute: 1,
-      loop: 1, playlist: '5qsRz1mjI60',
-      modestbranding: 1, rel: 0, fs: 0,
+      autoplay:       1,
+      controls:       0,
+      mute:           1,   /* satisfies non-iOS autoplay policy */
+      loop:           1,
+      playlist:       '5qsRz1mjI60',
+      modestbranding: 1,
+      rel:            0,
+      fs:             0,
+      playsinline:    1,   /* CRITICAL for iOS — prevents fullscreen takeover */
     },
     events: {
       onReady: function(e) {
         e.target.playVideo();
         e.target.unMute();
         e.target.setVolume(55);
+        /* If user already tapped before player was ready, start immediately */
+        if (userInteracted) {
+          e.target.playVideo();
+          e.target.unMute();
+        }
         _startWatchdog();
       },
       onStateChange: function(e) {
         if (userPaused) return;
-        /* Ended → loop back manually (more reliable than YT loop param) */
-        if (e.data === YT.PlayerState.ENDED) {
-          e.target.seekTo(0);
-          e.target.playVideo();
+        /*
+         * iOS fires -1 (unstarted) or 0 (ended) when the song finishes.
+         * Both need the same response: seek to start and replay.
+         */
+        if (e.data === YT.PlayerState.ENDED || e.data === -1) {
+          setTimeout(function() {
+            if (!userPaused && ytPlayer) {
+              ytPlayer.seekTo(0);
+              ytPlayer.playVideo();
+              ytPlayer.unMute();
+              ytPlayer.setVolume(55);
+            }
+          }, 200);
         }
-        /* Unexpectedly paused/stalled → restart after short grace period */
         if (e.data === YT.PlayerState.PAUSED) {
           setTimeout(function() {
             if (!userPaused && ytPlayer &&
                 ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
               ytPlayer.playVideo();
             }
-          }, 800);
+          }, 600);
         }
       }
     }
   });
 }
 
-/* Watchdog: every 3 s, restart if stalled and user hasn't paused */
+/*
+ * Two-tier watchdog:
+ * 1. State check every 2 s — restarts if not playing and user hasn't paused.
+ * 2. Time check every 800 ms — proactively loops 1.5 s before the track ends.
+ *    This is the most reliable loop mechanism on iOS Safari where onStateChange
+ *    ENDED often fires too late or not at all.
+ */
 function _startWatchdog() {
   setInterval(function() {
     if (!ytPlayer || userPaused) return;
     var s = ytPlayer.getPlayerState();
-    /* -1=unstarted, 0=ended, 2=paused, 5=cued — all mean "not playing" */
     if (s === -1 || s === 0 || s === 2 || s === 5) {
       ytPlayer.playVideo();
       ytPlayer.unMute();
       ytPlayer.setVolume(55);
     }
-  }, 3000);
+  }, 2000);
+
+  setInterval(function() {
+    if (!ytPlayer || userPaused) return;
+    try {
+      var duration = ytPlayer.getDuration();
+      var current  = ytPlayer.getCurrentTime();
+      if (duration > 0 && current > 0 && (duration - current) < 1.5) {
+        ytPlayer.seekTo(0);
+        ytPlayer.playVideo();
+      }
+    } catch (err) {}
+  }, 800);
 }
 
-/* Fallback: if browser blocked autoplay, unmute on first interaction */
+/* Start music on first user interaction — the only reliable way on iOS */
 function _startOnInteraction() {
+  userInteracted = true;
   if (ytPlayer) {
     ytPlayer.unMute();
     ytPlayer.setVolume(55);
@@ -210,27 +248,8 @@ function _startOnInteraction() {
   document.removeEventListener('click',      _startOnInteraction);
   document.removeEventListener('touchstart', _startOnInteraction);
 }
-document.addEventListener('click',      _startOnInteraction);
-document.addEventListener('touchstart', _startOnInteraction);
-
-function toggleMusic() {
-  if (!ytPlayer) return;
-  const btn  = document.getElementById('music-toggle');
-  const icon = document.getElementById('music-icon');
-  if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
-    userPaused = true;
-    ytPlayer.pauseVideo();
-    btn.classList.remove('playing');
-    icon.textContent = '🔇';
-  } else {
-    userPaused = false;
-    ytPlayer.playVideo();
-    ytPlayer.unMute();
-    ytPlayer.setVolume(55);
-    btn.classList.add('playing');
-    icon.textContent = '🎵';
-  }
-}
+document.addEventListener('click',      _startOnInteraction, { passive: true });
+document.addEventListener('touchstart', _startOnInteraction, { passive: true });
 
 /* ================================================================
    FIREBASE — guest counter
