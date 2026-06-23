@@ -146,12 +146,9 @@ function initScrollReveal() {
      an explicit .play() call triggered by IntersectionObserver is required. */
   const videoObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      const v = entry.target;
       if (entry.isIntersecting) {
-        const p = v.play();
+        const p = entry.target.play();
         if (p !== undefined) p.catch(() => {});
-      } else {
-        v.pause();
       }
     });
   }, { threshold: 0.2 });
