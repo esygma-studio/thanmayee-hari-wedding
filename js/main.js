@@ -71,7 +71,7 @@ function openInvite() {
 /* ================================================================
    COUNTDOWN TIMER (in hero)
    ================================================================ */
-const WEDDING = new Date('2026-10-31T11:54:00');
+const WEDDING = new Date('2026-10-31T11:46:00');
 function pad(n) { return String(n).padStart(2, '0'); }
 
 function tick() {
