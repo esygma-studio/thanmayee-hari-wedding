@@ -27,6 +27,19 @@ function openInvite() {
   const temple = document.getElementById('screen-temple');
   const img    = document.getElementById('templeImg');
 
+  /*
+   * Unlock ALL event videos immediately while we are still inside the
+   * tap/click event handler — the only guaranteed user-gesture context
+   * on iOS Safari.  Setting .muted and .playsinline as JS properties
+   * (not just HTML attributes) is required for iOS to honour them.
+   */
+  document.querySelectorAll('video.ev-img').forEach(function(v) {
+    v.muted     = true;
+    v.playsInline = true;
+    var p = v.play();
+    if (p !== undefined) p.catch(function() {});
+  });
+
   img.style.transition = 'transform 1.4s ease, opacity 1.4s ease';
   img.style.transform  = 'scale(1.18)';
   img.style.opacity    = '0';
@@ -147,11 +160,14 @@ function initScrollReveal() {
   const videoObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const p = entry.target.play();
+        const v = entry.target;
+        v.muted      = true;
+        v.playsInline = true;
+        const p = v.play();
         if (p !== undefined) p.catch(() => {});
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0 });
 
   document.querySelectorAll('video.ev-img').forEach(v => videoObs.observe(v));
 }
