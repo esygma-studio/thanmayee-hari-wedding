@@ -140,6 +140,23 @@ function initScrollReveal() {
     }, { threshold: 0.2 });
     scratchObs.observe(scratchSection);
   }
+
+  /* Force-play event videos as they scroll into view.
+     iOS ignores the autoplay attribute for off-screen elements;
+     an explicit .play() call triggered by IntersectionObserver is required. */
+  const videoObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const v = entry.target;
+      if (entry.isIntersecting) {
+        const p = v.play();
+        if (p !== undefined) p.catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('video.ev-img').forEach(v => videoObs.observe(v));
 }
 
 /* ================================================================
