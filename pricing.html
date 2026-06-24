@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custom Wedding Invites — Pricing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #FF007F;
+      --pink-light: #ffb3d9;
+      --pink-bg: #fff8fb;
+      --dark: #0d0d0d;
+      --text: #1a1a1a;
+      --text-muted: #666;
+    }
+
+    body {
+      font-family: 'Century Gothic', 'Outfit', system-ui, sans-serif;
+      background: #fff;
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px clamp(20px, 5vw, 72px) 96px;
+    }
+
+    /* ── Masthead ─────────────────────────────────────── */
+    .masthead {
+      background: var(--dark);
+      border-radius: 16px;
+      padding: 48px 40px 44px;
+      margin-bottom: 52px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--pink);
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .masthead h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+    }
+
+    .masthead p {
+      font-size: 0.95rem;
+      color: #aaa;
+      max-width: 500px;
+      line-height: 1.65;
+    }
+
+    /* ── Section headings ─────────────────────────────── */
+    .section-eyebrow {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--pink);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 30px;
+      line-height: 1.65;
+    }
+
+    /* ── Tier cards ───────────────────────────────────── */
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+
+    @media (max-width: 640px) {
+      .tiers { grid-template-columns: 1fr; }
+    }
+
+    .tier {
+      border-radius: 14px;
+      padding: 28px 22px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier--essential {
+      background: var(--pink-bg);
+      border: 1.5px solid var(--pink-light);
+    }
+
+    .tier--signature {
+      background: #fff;
+      border: 2px solid var(--pink);
+      box-shadow: 0 6px 28px rgba(255, 0, 127, 0.13);
+      position: relative;
+    }
+
+    .tier--grand {
+      background: var(--dark);
+      border: 1.5px solid #2a2a2a;
+    }
+
+    .tier-badge {
+      font-size: 9.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: var(--pink);
+      color: #fff;
+      border-radius: 50px;
+      padding: 4px 13px;
+      display: inline-block;
+      align-self: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .tier-badge--outline {
+      background: transparent;
+      color: var(--pink);
+      margin-top: 6px;
+    }
+
+    .most-popular {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--pink);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 50px;
+      padding: 4px 14px;
+      white-space: nowrap;
+    }
+
+    .tier-price {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -1.5px;
+      line-height: 1;
+    }
+
+    .tier--grand .tier-price { color: var(--pink); }
+
+    .tier-subtitle {
+      font-size: 0.78rem;
+      color: #999;
+      margin: 6px 0 20px;
+    }
+
+    .tier--grand .tier-subtitle { color: #666; }
+
+    .tier-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--pink-light);
+      margin-bottom: 20px;
+    }
+
+    .tier--grand .tier-divider { background: #2a2a2a; }
+
+    .tier-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      flex: 1;
+    }
+
+    .tier-features li {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      font-size: 0.82rem;
+      color: #333;
+      line-height: 1.45;
+    }
+
+    .tier--grand .tier-features li { color: #ccc; }
+
+    .check {
+      color: var(--pink);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Add-ons table ────────────────────────────────── */
+    .addons-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 52px;
+    }
+
+    .addons-table th {
+      text-align: left;
+      font-size: 9.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--pink);
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--pink);
+      font-weight: 700;
+    }
+
+    .addons-table th:last-child { text-align: right; }
+
+    .addons-table td {
+      padding: 14px;
+      line-height: 1.55;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: top;
+    }
+
+    .addons-table tbody tr:last-child td { border-bottom: none; }
+
+    .addon-name {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .addon-desc {
+      font-size: 0.845rem;
+      color: #555;
+    }
+
+    .addon-price {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--pink);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── Process steps ────────────────────────────────── */
+    .process-step {
+      display: flex;
+      gap: 26px;
+      align-items: flex-start;
+      padding: 28px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .process-step:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .step-content { flex: 1; }
+
+    .step-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .step-content p {
+      font-size: 0.875rem;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .step-content p:last-child { margin-bottom: 0; }
+
+    /* ── Closing note ─────────────────────────────────── */
+    .closing-note {
+      margin-top: 52px;
+      padding: 22px 26px;
+      background: var(--pink-bg);
+      border-left: 3px solid var(--pink);
+      border-radius: 4px;
+    }
+
+    .closing-note p {
+      font-size: 0.815rem;
+      color: #555;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <div class="masthead">
+    <p class="eyebrow">Pricing Guide · 2026</p>
+    <h1>Custom Wedding<br>Invites</h1>
+    <p>Beautifully crafted digital invitations that bring your love story to life — from elegant templates to fully animated, fully custom designs.</p>
+  </div>
+
+  <!-- Packages -->
+  <p class="section-eyebrow">Packages</p>
+  <h2 class="section-title">Choose Your Collection</h2>
+  <p class="section-desc">Every package includes a custom couple logo and full animated video delivery. Prices are per complete package.</p>
+
+  <div class="tiers">
+
+    <!-- Essential -->
+    <div class="tier tier--essential">
+      <span class="tier-badge">Essential</span>
+      <p class="tier-price">$40</p>
+      <p class="tier-subtitle">Template Design</p>
+      <div class="tier-divider"></div>
+      <ul class="tier-features">
+        <li><span class="check">✓</span>Choose from our curated pre-made design collection</li>
+        <li><span class="check">✓</span>Personalized content &amp; background music</li>
+        <li><span class="check">✓</span>Custom couple logo design</li>
+        <li><span class="check">✓</span>Fully animated video delivery</li>
+      </ul>
+    </div>
+
+    <!-- Signature -->
+    <div class="tier tier--signature">
+      <div class="most-popular">Most Popular</div>
+      <span class="tier-badge tier-badge--outline">Signature</span>
+      <p class="tier-price">$60</p>
+      <p class="tier-subtitle">Custom · 1–4 Events</p>
+      <div class="tier-divider"></div>
+      <ul class="tier-features">
+        <li><span class="check">✓</span>Unique custom design per event (1–4 events)</li>
+        <li><span class="check">✓</span>Custom couple logo design</li>
+        <li><span class="check">✓</span>PDF invite included</li>
+        <li><span class="check">✓</span>Fully animated video delivery</li>
+        <li><span class="check" style="font-size:0.95rem">∞</span>Unlimited revisions</li>
+      </ul>
+    </div>
+
+    <!-- Grand -->
+    <div class="tier tier--grand">
+      <span class="tier-badge">Grand</span>
+      <p class="tier-price">$85</p>
+      <p class="tier-subtitle">Custom · 5–8 Events</p>
+      <div class="tier-divider"></div>
+      <ul class="tier-features">
+        <li><span class="check">✓</span>All events with fully custom design (5–8 events)</li>
+        <li><span class="check">✓</span>Custom couple logo design</li>
+        <li><span class="check">✓</span>PDF invite included</li>
+        <li><span class="check">✓</span>Fully animated video delivery</li>
+        <li><span class="check" style="font-size:0.95rem">∞</span>Unlimited revisions</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Add-ons -->
+  <p class="section-eyebrow">Enhancements</p>
+  <h2 class="section-title">Add-Ons</h2>
+  <p class="section-desc" style="margin-bottom:22px">Customize your package with any of the following optional enhancements.</p>
+
+  <table class="addons-table">
+    <thead>
+      <tr>
+        <th>Add-On</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="addon-name">Couple Caricatures</td>
+        <td class="addon-desc">Custom illustrated caricature of the couple — compatible with any package</td>
+        <td class="addon-price">+$30</td>
+      </tr>
+      <tr>
+        <td class="addon-name">Additional Event</td>
+        <td class="addon-desc">Add one more event beyond your package's included count, with its own custom design</td>
+        <td class="addon-price">+$15</td>
+      </tr>
+      <tr>
+        <td class="addon-name">Video Variation</td>
+        <td class="addon-desc">Bride's side or groom's side variation video (e.g. different family details per side)</td>
+        <td class="addon-price">+$15</td>
+      </tr>
+      <tr>
+        <td class="addon-name">PDF Variation</td>
+        <td class="addon-desc">Static PDF version of a video variation, for easy digital or print sharing</td>
+        <td class="addon-price">+$10</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Process -->
+  <p class="section-eyebrow">How It Works</p>
+  <h2 class="section-title">Our Process</h2>
+  <p class="section-desc">Three focused phases. Seamless collaboration. Invites that exceed every expectation.</p>
+
+  <div class="process-step">
+    <div class="step-number">01</div>
+    <div class="step-content">
+      <h3>Understanding Customer Needs</h3>
+      <p>We begin with a conversation — not a form. We want to understand your vision: the style, the mood, the story you want your invite to tell. What colours speak to you? What elements feel like you as a couple? We gather this input with care, so that everything we create is rooted in who you are.</p>
+      <p>You are always in the loop. We keep communication open from the first message to the final delivery — nothing is ever a surprise.</p>
+    </div>
+  </div>
+
+  <div class="process-step">
+    <div class="step-number">02</div>
+    <div class="step-content">
+      <h3>Design</h3>
+      <p>Our designers translate your vision into breathtaking visual designs — each event gets its own personality, its own palette, its own moment. Drafts are shared at each stage so you can see the work evolving and give feedback in real time. We don't move forward until you're happy.</p>
+      <p>Unlimited revisions are included in every Signature and Grand package — not because they're always needed, but because we want you completely at ease. This is your day. The invite should be perfect.</p>
+    </div>
+  </div>
+
+  <div class="process-step">
+    <div class="step-number">03</div>
+    <div class="step-content">
+      <h3>Animation</h3>
+      <p>Once the design is approved, we bring it to life. Our animation team adds motion, transitions, and music to transform your invite from a still design into a cinematic moment — the kind that makes guests stop and watch twice.</p>
+      <p>The final animated invite is delivered ready to share digitally. It's the very first impression of your big day — and we make sure it's unforgettable.</p>
+    </div>
+  </div>
+
+  <!-- Closing note -->
+  <div class="closing-note">
+    <p>All prices are subject to confirmation at the time of booking. Packages and add-ons can be freely combined. Reach out to discuss your vision — we would love to be part of your story.</p>
+  </div>
+
+</div>
+</body>
+</html>
