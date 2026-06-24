@@ -28,16 +28,22 @@ function openInvite() {
   const img    = document.getElementById('templeImg');
 
   /*
-   * Inside the tap/click handler (user-gesture context) set the required
-   * iOS properties on every video element to unlock them.
-   * We do NOT call play() here on all videos — large files (6–20 MB)
-   * won't have buffered enough data yet, and iOS leaves them frozen on
-   * the first frame. The IntersectionObserver below calls play() on each
-   * video individually once it's in the viewport AND has data ready.
+   * iOS requires play() to be called synchronously inside a user-gesture
+   * handler to "unlock" each video element. Without this call, any later
+   * play() from a non-gesture context (IntersectionObserver, setTimeout)
+   * is intermittently blocked and iOS shows the play button.
+   *
+   * The call will likely reject for large unbuffered files — that is fine.
+   * The rejection does NOT prevent the unlock; iOS grants the activation
+   * based on the user gesture, not on whether play() succeeded.
+   * The IntersectionObserver below will call play() again per-video once
+   * it has scrolled into view and has enough data buffered.
    */
   document.querySelectorAll('video.ev-img').forEach(function(v) {
-    v.muted      = true;
+    v.muted       = true;
     v.playsInline = true;
+    var p = v.play();
+    if (p !== undefined) p.catch(function() {});
   });
 
   img.style.transition = 'transform 1.4s ease, opacity 1.4s ease';
@@ -154,28 +160,40 @@ function initScrollReveal() {
     scratchObs.observe(scratchSection);
   }
 
-  /* Play each video when it enters the viewport and has buffered enough data. */
+  /* Play each video when it enters the viewport; pause when it leaves. */
   function _playWhenReady(v) {
-    v.muted      = true;
+    v.muted       = true;
     v.playsInline = true;
+
     function doPlay() {
       var p = v.play();
-      if (p !== undefined) p.catch(function() {});
+      if (p !== undefined) {
+        p.catch(function() {
+          /* play() still rejected (e.g. network stall) — retry once */
+          setTimeout(function() {
+            var p2 = v.play();
+            if (p2 !== undefined) p2.catch(function() {});
+          }, 500);
+        });
+      }
     }
-    /* readyState >= 3 means the browser has enough data to start playing */
+
     if (v.readyState >= 3) {
       doPlay();
     } else {
-      /* Wait for enough data, then play */
       v.addEventListener('canplay', doPlay, { once: true });
-      /* Kick off loading if the browser hasn't started yet */
-      if (v.readyState === 0) v.load();
+      /* Trigger download for readyState 0 (nothing) or 1 (metadata only) */
+      if (v.readyState < 2) v.load();
     }
   }
 
   const videoObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
-      if (entry.isIntersecting) _playWhenReady(entry.target);
+      if (entry.isIntersecting) {
+        _playWhenReady(entry.target);
+      } else {
+        entry.target.pause();
+      }
     });
   }, { threshold: 0.1 });
 
