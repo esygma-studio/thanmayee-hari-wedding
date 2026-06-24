@@ -294,44 +294,6 @@ document.addEventListener('click',      _startOnInteraction, { passive: true });
 document.addEventListener('touchstart', _startOnInteraction, { passive: true });
 
 /* ================================================================
-   FIREBASE — guest counter
-   ================================================================ */
-var _db = null;
-
-function initFirebase() {
-  if (typeof firebase === 'undefined' || !FIREBASE_DB_URL || FIREBASE_DB_URL.startsWith('YOUR_')) return;
-  try {
-    if (!firebase.apps.length) {
-      firebase.initializeApp({ databaseURL: FIREBASE_DB_URL });
-    }
-    _db = firebase.database();
-    _db.ref('guestCount').on('value', function(snap) {
-      var n = snap.val() || 0;
-      var el = document.getElementById('guestCountNum');
-      if (el) el.textContent = n;
-    });
-  } catch(e) { console.warn('Firebase init failed:', e); }
-}
-
-function _incrementGuests(n) {
-  if (!_db) return;
-  _db.ref('guestCount').transaction(function(current) {
-    return (current || 0) + n;
-  });
-}
-
-function _headcountToNumber(text) {
-  if (!text) return 0;
-  if (text.includes('Just Me'))       return 1;
-  if (text.includes('+1'))            return 2;
-  if (text.includes('+2'))            return 3;
-  if (text.includes('+3'))            return 4;
-  if (text.includes('+4'))            return 5;
-  if (text.includes('+5'))            return 6;
-  return 1;
-}
-
-/* ================================================================
    RSVP FORM
    ================================================================ */
 function selectToggle(btn) {
@@ -386,11 +348,6 @@ function submitRSVP(e) {
     }),
   }).catch(function(err) { console.warn('RSVP email error:', err); });
 
-  /* Increment guest counter only for acceptances */
-  if (rsvp && rsvp.includes('Accept')) {
-    _incrementGuests(_headcountToNumber(headcount));
-  }
-
   /* Show thank-you */
   const form   = document.getElementById('rsvpForm');
   const thanks = document.getElementById('rsvpThanks');
@@ -398,5 +355,3 @@ function submitRSVP(e) {
   thanks.style.display = 'flex';
 }
 
-/* Init on load */
-initFirebase();

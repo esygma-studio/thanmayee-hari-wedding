@@ -1,5 +1,43 @@
 const nodemailer = require('nodemailer');
 
+function headcountToNumber(text) {
+  if (!text) return 0;
+  if (text.includes('Just Me')) return 1;
+  if (text.includes('+1'))      return 2;
+  if (text.includes('+2'))      return 3;
+  if (text.includes('+3'))      return 4;
+  if (text.includes('+4'))      return 5;
+  if (text.includes('+5'))      return 6;
+  return 1;
+}
+
+async function readAndUpdateGuestCount(rsvpStatus, headcount) {
+  const dbUrl = process.env.FIREBASE_DB_URL;
+  if (!dbUrl || dbUrl.startsWith('YOUR_')) return null;
+
+  try {
+    const readRes     = await fetch(`${dbUrl}/guestCount.json`);
+    const currentCount = (await readRes.json()) || 0;
+
+    const isAccepting = rsvpStatus && rsvpStatus.toLowerCase().includes('accept');
+    const newGuests   = isAccepting ? headcountToNumber(headcount) : 0;
+    const newTotal    = currentCount + newGuests;
+
+    if (newGuests > 0) {
+      await fetch(`${dbUrl}/guestCount.json`, {
+        method:  'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(newTotal),
+      });
+    }
+
+    return newTotal;
+  } catch (e) {
+    console.warn('Firebase counter error:', e);
+    return null;
+  }
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -10,6 +48,8 @@ module.exports = async function handler(req, res) {
     rooting_for, excited_level, fav_event, events_attending, wishes
   } = req.body;
 
+  const totalGuests = await readAndUpdateGuestCount(rsvp_status, headcount);
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -17,6 +57,19 @@ module.exports = async function handler(req, res) {
       pass: process.env.GMAIL_APP_PASSWORD,
     },
   });
+
+  const counterBlock = totalGuests !== null ? `
+    <div style="background:#112018;border:1px solid rgba(196,184,112,0.4);border-radius:6px;
+                padding:20px 24px;text-align:center;margin-bottom:24px;">
+      <div style="font-family:Georgia,serif;font-size:11px;letter-spacing:3px;
+                  text-transform:uppercase;color:#a59b60;margin-bottom:6px;">
+        Running Total — Confirmed Guests
+      </div>
+      <div style="font-family:Georgia,serif;font-size:42px;font-weight:bold;
+                  color:#c4b870;line-height:1;letter-spacing:2px;">
+        ${totalGuests}
+      </div>
+    </div>` : '';
 
   const html = `
 <!DOCTYPE html>
@@ -54,6 +107,7 @@ module.exports = async function handler(req, res) {
     <p>NEW RSVP · 31 OCTOBER 2026</p>
   </div>
   <div class="body">
+    ${counterBlock}
     <div class="row">
       <span class="label">Guest</span>
       <span class="value"><strong>${guest_name || '—'}</strong></span>
