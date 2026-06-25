@@ -375,22 +375,22 @@ body {
   border-radius: 10px;
   overflow: hidden;
   cursor: crosshair;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(165,155,96,0.3);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 0 0 1px rgba(165,155,96,0.35);
 }
 
-/* Hidden hashtag layer — white so scratching reveals bright surface */
+/* Hidden hashtag layer — revealed when scratching */
 .scratch-reward {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 0.5rem;
-  background: #ffffff;
+  background: #112018;
 }
 
 .scratch-hashtag {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(2.2rem, 9vw, 3.2rem);
-  color: #a59b60;
-  text-shadow: none;
+  color: #f0d98a;
+  text-shadow: 0 0 20px rgba(240,200,100,0.3);
   opacity: 0.12;
   transform: scale(0.9);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -409,7 +409,7 @@ body {
 
 .scratch-sub {
   font-family: 'Cinzel', serif; font-size: 9px;
-  letter-spacing: 3px; color: rgba(47,80,57,0.55);
+  letter-spacing: 3px; color: rgba(196,184,112,0.7);
   opacity: 0; transition: opacity 0.6s ease 0.3s;
 }
 .scratch-reward.revealed .scratch-sub { opacity: 1; }
