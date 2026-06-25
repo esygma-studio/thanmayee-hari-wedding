@@ -363,7 +363,7 @@ body {
 
 .scratch-instruction {
   font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
-  color: var(--text-body); line-height: 1.7;
+  color: #3d4a3a; line-height: 1.7;
   max-width: 480px; margin: 0 auto 2.5rem;
 }
 
@@ -439,7 +439,7 @@ body {
 .scratch-done {
   display: none;
   font-family: 'Cormorant Garamond', serif; font-style: italic;
-  font-size: 1.2rem; color: var(--text-body);
+  font-size: 1.2rem; color: #3d4a3a;
   margin-top: 1.4rem;
   animation: fadeIn 0.6s ease forwards;
 }
