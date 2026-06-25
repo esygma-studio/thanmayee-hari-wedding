@@ -445,6 +445,101 @@ body {
 }
 
 /* ================================================================
+   FAMILY & BLESSINGS
+   ================================================================ */
+.s-family .section-inner {
+  padding: 5rem 1.5rem 4rem;
+}
+
+.fam-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 13vw, 5.5rem);
+  color: #f0d98a;
+  text-shadow: 0 0 28px rgba(240,200,100,0.3);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.fam-rule {
+  width: 220px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196,184,112,0.55), transparent);
+  margin: 0 auto 1.2rem;
+}
+
+.fam-star {
+  font-size: 1.1rem; color: var(--gold-bright);
+  margin-bottom: 1.4rem;
+}
+
+.fam-ancestors {
+  font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 5px;
+  color: rgba(240,217,138,0.6);
+  text-transform: uppercase;
+  margin-bottom: 3.2rem;
+}
+
+.fam-block {
+  margin-bottom: 2.8rem;
+}
+
+.fam-symbol {
+  display: block;
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  opacity: 0.75;
+}
+
+.fam-names {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.15rem, 4.5vw, 1.6rem);
+  font-weight: 600;
+  color: #f0d98a;
+  line-height: 1.35;
+  margin-bottom: 0.45rem;
+}
+
+.fam-role {
+  font-family: 'Cinzel', serif;
+  font-size: 8px; letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 0.9rem;
+}
+
+.fam-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 3.2vw, 1.15rem);
+  color: var(--text-body);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
+  opacity: 0.85;
+}
+
+.fam-footer {
+  margin-top: 3rem;
+  border-top: 1px solid rgba(165,155,96,0.2);
+  padding-top: 2.2rem;
+}
+
+.fam-request {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+.fam-celebrate {
+  font-family: 'Cinzel', serif;
+  font-size: 8px; letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(240,217,138,0.5);
+}
+
+/* ================================================================
    EVENTS TIMELINE
    ================================================================ */
 .s-events .section-inner { padding: 5rem 1.5rem; }
