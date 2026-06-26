@@ -16,7 +16,7 @@ async function readAndUpdateGuestCount(rsvpStatus, headcount) {
   if (!dbUrl || dbUrl.startsWith('YOUR_')) return null;
 
   try {
-    const readRes     = await fetch(`${dbUrl}/guestCount.json`);
+    const readRes      = await fetch(`${dbUrl}/guestCount.json`);
     const currentCount = (await readRes.json()) || 0;
 
     const isAccepting = rsvpStatus && rsvpStatus.toLowerCase().includes('accept');
@@ -38,6 +38,21 @@ async function readAndUpdateGuestCount(rsvpStatus, headcount) {
   }
 }
 
+async function appendToSheet(data) {
+  const url = process.env.GOOGLE_SCRIPT_URL;
+  if (!url) return;
+
+  try {
+    await fetch(url, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(data),
+    });
+  } catch (e) {
+    console.warn('Google Sheets error:', e);
+  }
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -48,7 +63,16 @@ module.exports = async function handler(req, res) {
     rooting_for, excited_level, fav_event, events_attending, wishes
   } = req.body;
 
-  const totalGuests = await readAndUpdateGuestCount(rsvp_status, headcount);
+  const payload = {
+    guest_name, guest_phone, rsvp_status, headcount,
+    rooting_for, excited_level, fav_event, events_attending, wishes,
+  };
+
+  // Run sheet update and guest count in parallel — neither blocks the email
+  const [totalGuests] = await Promise.all([
+    readAndUpdateGuestCount(rsvp_status, headcount),
+    appendToSheet(payload),
+  ]);
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
