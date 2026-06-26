@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const https      = require('https');
 
 function headcountToNumber(text) {
   if (!text) return 0;
@@ -38,28 +39,44 @@ async function readAndUpdateGuestCount(rsvpStatus, headcount) {
   }
 }
 
+function httpsPost(urlString, body) {
+  return new Promise((resolve, reject) => {
+    const u   = new URL(urlString);
+    const req = https.request({
+      hostname: u.hostname,
+      path:     u.pathname + u.search,
+      method:   'POST',
+      headers:  {
+        'Content-Type':   'application/json',
+        'Content-Length': Buffer.byteLength(body),
+      },
+    }, (res) => {
+      // Apps Script returns a 302 — follow it as POST (fetch auto-downgrades to GET)
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        res.resume();
+        httpsPost(res.headers.location, body).then(resolve).catch(reject);
+        return;
+      }
+      let raw = '';
+      res.on('data', (c) => { raw += c; });
+      res.on('end', () => {
+        console.log('Sheet response:', res.statusCode, raw.slice(0, 120));
+        resolve();
+      });
+    });
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
+}
+
 async function appendToSheet(data) {
   const url = process.env.GOOGLE_SCRIPT_URL;
-  if (!url) return;
-
-  const body = JSON.stringify(data);
-  const opts = {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body,
-  };
-
+  if (!url) { console.warn('GOOGLE_SCRIPT_URL not set'); return; }
   try {
-    // Apps Script returns a 302 redirect; fetch follows it as GET which skips
-    // doPost. Capture the redirect URL manually and re-POST to it instead.
-    const res = await fetch(url, { ...opts, redirect: 'manual' });
-
-    if (res.status >= 300 && res.status < 400) {
-      const location = res.headers.get('location');
-      if (location) await fetch(location, opts);
-    }
+    await httpsPost(url, JSON.stringify(data));
   } catch (e) {
-    console.warn('Google Sheets error:', e);
+    console.warn('Google Sheets error:', e.message);
   }
 }
 
