@@ -508,7 +508,7 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 11px; letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--gold-dim);
+  color: #fff;
   margin-bottom: 0.9rem;
 }
 
@@ -540,7 +540,7 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 11px; letter-spacing: 4px;
   text-transform: uppercase;
-  color: rgba(240,217,138,0.5);
+  color: #fff;
   margin-bottom: 0.5rem;
 }
 
@@ -548,7 +548,7 @@ body {
   font-family: 'Cinzel', serif;
   font-size: 11px; letter-spacing: 4px;
   text-transform: uppercase;
-  color: rgba(240,217,138,0.5);
+  color: #fff;
 }
 
 /* ================================================================
@@ -602,9 +602,9 @@ body {
 }
 
 .ev-when {
-  font-family: 'Cinzel', serif; font-size: 11px;
+  font-family: 'Cinzel', serif; font-size: 13px;
   letter-spacing: 2px; color: var(--text-body);
-  opacity: 0.8; margin-bottom: 0.75rem;
+  opacity: 0.9; margin-bottom: 0.75rem;
 }
 
 .ev-desc {
@@ -893,6 +893,43 @@ body {
   0%,100% { transform: scale(1);    opacity: 1; }
   50%      { transform: scale(1.18); opacity: 0.8; }
 }
+
+/* ================================================================
+   NAVBAR
+   ================================================================ */
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(17,32,24,0.95); backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(165,155,96,0.2);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.site-nav.visible { opacity: 1; pointer-events: auto; }
+.nav-inner {
+  max-width: 820px; margin: 0 auto;
+  padding: 0 1.5rem; height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px;
+  color: var(--gold); text-decoration: none; text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 1.5rem; align-items: center; }
+.nav-link {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold-dim); text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nav-link:hover { color: var(--gold-bright); }
+.nav-link--cta {
+  color: var(--gold); border: 1px solid rgba(165,155,96,0.5);
+  padding: 6px 14px; border-radius: 2px;
+}
+.nav-link--cta:hover { background: rgba(165,155,96,0.12); }
+
+/* Muhurtham card gets slightly larger venue text */
+.ev-venue-label--main { font-size: 14px; opacity: 0.9; }
 
 /* ================================================================
    RESPONSIVE

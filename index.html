@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <link rel="stylesheet" href="css/style.css?v=16">
 </head>
 <body>
 
@@ -39,6 +39,19 @@
   <!-- ============================================================
        MAIN WEBSITE
        ============================================================ -->
+  <!-- ── NAV BAR ── -->
+  <nav id="site-nav" class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">#Harithanayam</a>
+      <div class="nav-links">
+        <a class="nav-link" href="#family">Family</a>
+        <a class="nav-link" href="#events">Events</a>
+        <a class="nav-link nav-link--cta" href="#rsvp">RSVP</a>
+        <a class="nav-link" href="#hotel">Hotel</a>
+      </div>
+    </div>
+  </nav>
+
   <div id="site">
     <canvas id="glitter-canvas"></canvas>
 
@@ -96,7 +109,6 @@
         <div class="scratch-container">
           <div class="scratch-reward" id="scratchReward">
             <p class="scratch-hashtag">#Harithanayam</p>
-            <p class="scratch-sub">31 · October · 2026</p>
           </div>
           <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
         </div>
@@ -106,7 +118,7 @@
     </section>
 
     <!-- ── FAMILY & BLESSINGS ── -->
-    <section class="s-family vignette-bg">
+    <section id="family" class="s-family vignette-bg">
       <div class="section-inner">
         <h2 class="fam-title">Family &amp; Blessings</h2>
         <div class="fam-rule"></div>
@@ -130,13 +142,13 @@
         <div class="fam-footer">
           <p class="fam-request">cordially request the honour of your esteemed presence</p>
           <p class="fam-celebrate">To Celebrate the Auspicious Wedding of</p>
-          <p class="fam-children">their beloved children</p>
+          <p class="fam-children">their cherished son</p>
         </div>
       </div>
     </section>
 
     <!-- ── EVENTS TIMELINE ── -->
-    <section class="s-events light-bg">
+    <section id="events" class="s-events light-bg">
       <div class="section-inner">
         <p class="sec-label">JOIN US FOR</p>
         <h2 class="sec-title">The Celebrations</h2>
@@ -230,7 +242,7 @@
               <p class="ev-when">Saturday, 31 October · 11:46 AM</p>
               <p class="ev-desc">The auspicious moment — two souls, two families, one eternal bond. Witness the sacred union of Thanmayee &amp; Hari.</p>
               <p class="ev-ht">#Harithanayam</p>
-              <div class="ev-venue"><span class="ev-venue-label">Venue · Shiva Vishnu Temple, Livermore CA</span><a class="ev-map-link" href="https://share.google/nOE3QUW2XZ6tXEzHg" target="_blank" rel="noopener">📍 See on Maps</a></div>
+              <div class="ev-venue"><span class="ev-venue-label ev-venue-label--main">Venue · Shiva Vishnu Temple, Livermore CA</span><a class="ev-map-link" href="https://share.google/nOE3QUW2XZ6tXEzHg" target="_blank" rel="noopener">📍 See on Maps</a></div>
             </div>
           </div>
 
@@ -239,7 +251,7 @@
     </section>
 
     <!-- ── RSVP ── -->
-    <section class="s-rsvp vignette-bg">
+    <section id="rsvp" class="s-rsvp vignette-bg">
       <div class="section-inner">
         <p class="sec-label">JOIN THE FUN</p>
         <h2 class="sec-title">Celebrate With Us</h2>
@@ -336,7 +348,7 @@
     </section>
 
     <!-- ── HOTEL ── -->
-    <section class="s-hotel light-bg">
+    <section id="hotel" class="s-hotel light-bg">
       <div class="section-inner">
         <p class="sec-label">STAY WITH US</p>
         <h2 class="sec-title">Hotel Booking</h2>

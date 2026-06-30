@@ -59,6 +59,8 @@ function openInvite() {
     temple.style.display = 'none';
     glitter.start();
     initPetals();
+    var nav = document.getElementById('site-nav');
+    if (nav) nav.classList.add('visible');
   }, 1200);
 
   NAME_STEPS.forEach(({ id, delay }) => {
