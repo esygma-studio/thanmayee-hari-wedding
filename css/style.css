@@ -219,7 +219,11 @@ body {
 }
 
 /* Hero text overrides */
-.hero-wrap .n-together { color: var(--text-label); }
+.hero-wrap .n-together {
+  color: var(--text-label);
+  margin-left: clamp(1rem, 5vw, 2.5rem); /* nudge right to sit under script names' visual weight */
+  text-indent: 5px; /* compensate for trailing letter-spacing gap */
+}
 .hero-wrap .n-bride,
 .hero-wrap .n-groom    { color: #f0d98a; text-shadow: 0 0 30px rgba(240,200,100,0.55), 0 2px 8px rgba(0,0,0,0.5); }
 .hero-wrap .n-hashtag  { color: #f0d98a; }
@@ -833,7 +837,7 @@ body {
 }
 
 .closing-together {
-  font-family: 'Cinzel', serif; font-size: 8px;
+  font-family: 'Cinzel', serif; font-size: 11px;
   letter-spacing: 4px; color: var(--gold-dim); margin-top: 0.5rem;
 }
 .closing-names {
@@ -841,11 +845,11 @@ body {
   color: var(--gold); text-shadow: 0 0 20px var(--gold-glow);
 }
 .closing-date {
-  font-family: 'Cinzel', serif; font-size: 10px;
+  font-family: 'Cinzel', serif; font-size: 12px;
   letter-spacing: 4px; color: var(--gold-dim);
 }
 .closing-hash {
-  font-family: 'Cinzel', serif; font-size: 10px;
+  font-family: 'Cinzel', serif; font-size: 12px;
   letter-spacing: 3px; color: var(--gold-dim);
 }
 .closing-blessing {
