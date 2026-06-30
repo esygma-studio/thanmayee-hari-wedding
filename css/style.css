@@ -237,7 +237,7 @@ body {
 }
 
 .n-together {
-  font-family: 'Cinzel', serif; font-size: 9px;
+  font-family: 'Cinzel', serif; font-size: 11px;
   letter-spacing: 5px; color: var(--gold-dim); margin-bottom: 1.4rem;
 }
 
@@ -271,7 +271,7 @@ body {
 }
 
 .n-date {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px;
+  font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 4px;
   color: var(--gold-dim); margin-bottom: 1.5rem;
 }
 
@@ -290,7 +290,7 @@ body {
   color: var(--gold); text-shadow: 0 0 20px var(--gold-glow); line-height: 1;
 }
 .hero-cd-unit {
-  font-family: 'Cinzel', serif; font-size: 7px;
+  font-family: 'Cinzel', serif; font-size: 10px;
   letter-spacing: 3px; color: var(--gold-dim);
 }
 .hero-cd-sep {
@@ -317,7 +317,7 @@ body {
    SHARED SECTION STYLES
    ================================================================ */
 .sec-label {
-  font-family: 'Cinzel', serif; font-size: 8px;
+  font-family: 'Cinzel', serif; font-size: 11px;
   letter-spacing: 5px; color: var(--text-label); margin-bottom: 0.6rem;
 }
 
@@ -425,7 +425,7 @@ body {
 
 /* Hint below card */
 .scratch-hint {
-  font-family: 'Cinzel', serif; font-size: 9px;
+  font-family: 'Cinzel', serif; font-size: 11px;
   letter-spacing: 4px; color: rgba(165,155,96,0.65);
   margin-top: 1.4rem;
   animation: hint-blink 2s ease-in-out infinite;
@@ -473,7 +473,7 @@ body {
 
 .fam-ancestors {
   font-family: 'Cinzel', serif;
-  font-size: 9px; letter-spacing: 5px;
+  font-size: 11px; letter-spacing: 5px;
   color: rgba(240,217,138,0.6);
   text-transform: uppercase;
   margin-bottom: 3.2rem;
@@ -502,7 +502,7 @@ body {
 
 .fam-role {
   font-family: 'Cinzel', serif;
-  font-size: 8px; letter-spacing: 4px;
+  font-size: 11px; letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold-dim);
   margin-bottom: 0.9rem;
@@ -534,7 +534,7 @@ body {
 
 .fam-celebrate {
   font-family: 'Cinzel', serif;
-  font-size: 8px; letter-spacing: 4px;
+  font-size: 11px; letter-spacing: 4px;
   text-transform: uppercase;
   color: rgba(240,217,138,0.5);
   margin-bottom: 0.5rem;
@@ -542,7 +542,7 @@ body {
 
 .fam-children {
   font-family: 'Cinzel', serif;
-  font-size: 8px; letter-spacing: 4px;
+  font-size: 11px; letter-spacing: 4px;
   text-transform: uppercase;
   color: rgba(240,217,138,0.5);
 }
@@ -598,7 +598,7 @@ body {
 }
 
 .ev-when {
-  font-family: 'Cinzel', serif; font-size: 8px;
+  font-family: 'Cinzel', serif; font-size: 11px;
   letter-spacing: 2px; color: var(--text-body);
   opacity: 0.8; margin-bottom: 0.75rem;
 }
@@ -609,7 +609,7 @@ body {
 }
 
 .ev-ht {
-  font-family: 'Cinzel', serif; font-size: 9px;
+  font-family: 'Cinzel', serif; font-size: 11px;
   letter-spacing: 2px; color: var(--gold-dim); margin-bottom: 0.75rem;
 }
 
@@ -619,13 +619,13 @@ body {
 }
 
 .ev-venue-label {
-  font-family: 'Cinzel', serif; font-size: 10px;
+  font-family: 'Cinzel', serif; font-size: 12px;
   letter-spacing: 2px; color: var(--gold); opacity: 0.75;
   text-transform: uppercase;
 }
 
 .ev-map-link {
-  font-family: 'Cinzel', serif; font-size: 10px;
+  font-family: 'Cinzel', serif; font-size: 12px;
   letter-spacing: 2px; color: var(--text-body);
   text-decoration: none;
   border: 1px solid rgba(165,155,96,0.4);
