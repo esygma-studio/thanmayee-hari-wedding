@@ -651,6 +651,11 @@ body {
 }
 .light-bg .ev-venue-label { color: #4a6a50; opacity: 1; }
 
+.rf-error {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px;
+  color: #c0392b; text-transform: uppercase; margin-top: 6px;
+}
+
 /* ================================================================
    RSVP
    ================================================================ */

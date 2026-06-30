@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=17">
 </head>
 <body>
 
@@ -258,11 +258,12 @@
         <p class="sec-sub">A few fun questions before the big day!</p>
         <div class="sec-ornament">✧</div>
 
-        <form class="rsvp-form" id="rsvpForm" onsubmit="submitRSVP(event)">
+        <form class="rsvp-form" id="rsvpForm" onsubmit="submitRSVP(event)" novalidate>
 
           <div class="rf-group">
             <label class="rf-label">Guest Details</label>
-            <input class="rf-input" type="text" name="name" placeholder="Your Name" required>
+            <input class="rf-input" type="text" name="name" placeholder="Your Name">
+            <p class="rf-error" id="rf-name-error" style="display:none;">Please enter your name to continue.</p>
             <input class="rf-input" type="tel" name="phone" placeholder="Phone Number">
           </div>
 

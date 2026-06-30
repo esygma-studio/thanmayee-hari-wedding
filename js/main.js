@@ -338,37 +338,56 @@ function _getMulti(group) {
     .map(b => b.textContent.trim()).join(', ') || '';
 }
 
-function submitRSVP(e) {
+async function submitRSVP(e) {
   e.preventDefault();
 
-  const name       = document.querySelector('input[name="name"]').value.trim();
-  const phone      = document.querySelector('input[name="phone"]').value.trim();
-  const rsvp       = _getToggle('rsvp');
-  const headcount  = _getToggle('headcount');
-  const rooting    = _getToggle('rooting');
-  const excited    = _getToggle('excited');
-  const favEvent   = _getToggle('fav-event');
-  const attending  = _getMulti('attending');
-  const wishes     = document.querySelector('textarea[name="message"]').value.trim();
+  const nameInput = document.querySelector('input[name="name"]');
+  const nameError = document.getElementById('rf-name-error');
+  const name      = nameInput.value.trim();
 
-  /* Send email via /api/rsvp (Resend — server-side, key stays secret) */
-  fetch('/api/rsvp', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      guest_name:       name,
-      guest_phone:      phone,
-      rsvp_status:      rsvp      || 'Not selected',
-      headcount:        headcount || 'Not selected',
-      rooting_for:      rooting   || 'Not selected',
-      excited_level:    excited   || 'Not selected',
-      fav_event:        favEvent  || 'Not selected',
-      events_attending: attending || 'None selected',
-      wishes:           wishes    || '—',
-    }),
-  }).catch(function(err) { console.warn('RSVP email error:', err); });
+  if (!name) {
+    nameError.style.display = 'block';
+    nameInput.focus();
+    return;
+  }
+  nameError.style.display = 'none';
 
-  /* Show thank-you */
+  const phone     = document.querySelector('input[name="phone"]').value.trim();
+  const rsvp      = _getToggle('rsvp');
+  const headcount = _getToggle('headcount');
+  const rooting   = _getToggle('rooting');
+  const excited   = _getToggle('excited');
+  const favEvent  = _getToggle('fav-event');
+  const attending = _getMulti('attending');
+  const wishes    = document.querySelector('textarea[name="message"]').value.trim();
+
+  const submitBtn = document.querySelector('.rf-submit');
+  submitBtn.disabled   = true;
+  submitBtn.textContent = 'Sending…';
+
+  try {
+    await fetch('/api/rsvp', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        guest_name:       name,
+        guest_phone:      phone,
+        rsvp_status:      rsvp      || 'Not selected',
+        headcount:        headcount || 'Not selected',
+        rooting_for:      rooting   || 'Not selected',
+        excited_level:    excited   || 'Not selected',
+        fav_event:        favEvent  || 'Not selected',
+        events_attending: attending || 'None selected',
+        wishes:           wishes    || '—',
+      }),
+    });
+  } catch (err) {
+    console.warn('RSVP error:', err);
+  }
+
+  submitBtn.disabled    = false;
+  submitBtn.textContent = 'Send Love ❤️';
+
   const form   = document.getElementById('rsvpForm');
   const thanks = document.getElementById('rsvpThanks');
   form.style.display   = 'none';
