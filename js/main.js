@@ -338,7 +338,7 @@ function _getMulti(group) {
     .map(b => b.textContent.trim()).join(', ') || '';
 }
 
-async function submitRSVP(e) {
+function submitRSVP(e) {
   e.preventDefault();
 
   const nameInput = document.querySelector('input[name="name"]');
@@ -361,32 +361,21 @@ async function submitRSVP(e) {
   const attending = _getMulti('attending');
   const wishes    = document.querySelector('textarea[name="message"]').value.trim();
 
-  const submitBtn = document.querySelector('.rf-submit');
-  submitBtn.disabled   = true;
-  submitBtn.textContent = 'Sending…';
-
-  try {
-    await fetch('/api/rsvp', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        guest_name:       name,
-        guest_phone:      phone,
-        rsvp_status:      rsvp      || 'Not selected',
-        headcount:        headcount || 'Not selected',
-        rooting_for:      rooting   || 'Not selected',
-        excited_level:    excited   || 'Not selected',
-        fav_event:        favEvent  || 'Not selected',
-        events_attending: attending || 'None selected',
-        wishes:           wishes    || '—',
-      }),
-    });
-  } catch (err) {
-    console.warn('RSVP error:', err);
-  }
-
-  submitBtn.disabled    = false;
-  submitBtn.textContent = 'Send Love ❤️';
+  fetch('/api/rsvp', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      guest_name:       name,
+      guest_phone:      phone,
+      rsvp_status:      rsvp      || 'Not selected',
+      headcount:        headcount || 'Not selected',
+      rooting_for:      rooting   || 'Not selected',
+      excited_level:    excited   || 'Not selected',
+      fav_event:        favEvent  || 'Not selected',
+      events_attending: attending || 'None selected',
+      wishes:           wishes    || '—',
+    }),
+  }).catch(function(err) { console.warn('RSVP error:', err); });
 
   const form   = document.getElementById('rsvpForm');
   const thanks = document.getElementById('rsvpThanks');
