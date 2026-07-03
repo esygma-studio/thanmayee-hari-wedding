@@ -91,7 +91,8 @@ module.exports = async function handler(req, res) {
   } = req.body;
 
   const payload = {
-    guest_name, guest_phone, rsvp_status, headcount,
+    guest_name, guest_phone, rsvp_status,
+    headcount: headcountToNumber(headcount), // number avoids Google Sheets formula interpretation of "+"
     rooting_for, excited_level, fav_event, events_attending, wishes,
   };
 
